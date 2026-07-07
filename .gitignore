@@ -1,0 +1,25 @@
+# Virtual Environment
+.QAvenv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# pytest
+.pytest_cache/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Driver
+chromedriver.exe
+
+# Windows
+Thumbs.db
+Desktop.ini
