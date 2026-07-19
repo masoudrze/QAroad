@@ -8,9 +8,9 @@ class CreateGroupPage:
         self.driver = driver
         self.new_group_button=((By.XPATH, "//a[@title='گروه جدید']"))
         self.group_name_field = ((By.ID,"Groupname"))
-        self.MinIncreaseCredit_field = ((By.ID,"MinIncreaseCredit"))
-        self.MaxIncreaseCredit_field = ((By.ID,"MaxIncreaseCredit"))
-        self.submit_button = ((By.XPATH,"(//button[contains(text(),'ثبت')])[1]"))
+        self.group_MinIncreaseCredit_field = ((By.ID,"MinIncreaseCredit"))
+        self.group_MaxIncreaseCredit_field = ((By.ID,"MaxIncreaseCredit"))
+        self.group_submit_button = ((By.XPATH,"(//button[contains(text(),'ثبت')])[1]"))
 
 
 
@@ -32,10 +32,10 @@ class CreateGroupPage:
         self.driver.find_element(*self.group_name_field).send_keys(group_name)
 
     def enter_group_MinIncreaseCredit(self,MinIncreaseCredit):
-        self.driver.find_element(*self.MinIncreaseCredit_field).send_keys(MinIncreaseCredit)
+        self.driver.find_element(*self.group_MinIncreaseCredit_field).send_keys(MinIncreaseCredit)
 
     def enter_group_MaxIncreaseCredit(self,MaxIncreaseCredit):
-        self.driver.find_element(*self.MaxIncreaseCredit_field).send_keys(MaxIncreaseCredit)
+        self.driver.find_element(*self.group_MaxIncreaseCredit_field).send_keys(MaxIncreaseCredit)
     
     def click_create(self):
         self.driver.find_element(*self.submit_button).click()

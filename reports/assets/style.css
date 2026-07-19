@@ -1,0 +1,22 @@
+body{
+    background:#f4f6f9;
+    font-family:Segoe UI;
+}
+
+table{
+    border-radius:8px;
+}
+
+.passed{
+    background:#4CAF50 !important;
+    color:white;
+}
+
+.failed{
+    background:#F44336 !important;
+    color:white;
+}
+
+.skipped{
+    background:#FFC107 !important;
+}

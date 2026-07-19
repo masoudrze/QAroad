@@ -7,13 +7,22 @@ class MainMenu:
         self.driver = driver
         self.Definitions_menu=(((By.XPATH, '//a[span[normalize-space()="تعاریف"]]')))
         self.Definitions_menu_base_info=(((By.XPATH, '//a[span[normalize-space()="اطلاعات پایه"]]')))
+
         self.Definitions_menu_base_info_group=(((By.XPATH, '//a[normalize-space()="گروه"]')))
+
+        self.Definitions_menu_base_info_users=(((By.XPATH, '//a[normalize-space()="افراد"]')))
 
     
     def create_group_menu(self):
         self.driver.find_element(*self.Definitions_menu).click()
         self.driver.find_element(*self.Definitions_menu_base_info).click()
         self.driver.find_element(*self.Definitions_menu_base_info_group).click()
+
+    def create_user_menu(self):
+        self.driver.find_element(*self.Definitions_menu).click()
+        self.driver.find_element(*self.Definitions_menu_base_info).click()
+        self.driver.find_element(*self.Definitions_menu_base_info_users).click()
+    
 
 
 
