@@ -13,15 +13,40 @@ class MainMenu:
         self.Definitions_menu_base_info_users=(((By.XPATH, '//a[normalize-space()="افراد"]')))
 
     
+
     def create_group_menu(self):
-        self.driver.find_element(*self.Definitions_menu).click()
-        self.driver.find_element(*self.Definitions_menu_base_info).click()
-        self.driver.find_element(*self.Definitions_menu_base_info_group).click()
+        wait = WebDriverWait(self.driver, 5)
+
+        wait.until(
+            EC.element_to_be_clickable(self.Definitions_menu)
+        ).click()
+
+        wait.until(
+            EC.element_to_be_clickable(self.Definitions_menu_base_info)
+        ).click()
+
+        wait.until(
+            EC.element_to_be_clickable(self.Definitions_menu_base_info_group)
+        ).click()
+
+
+
+
 
     def create_user_menu(self):
-        self.driver.find_element(*self.Definitions_menu).click()
-        self.driver.find_element(*self.Definitions_menu_base_info).click()
-        self.driver.find_element(*self.Definitions_menu_base_info_users).click()
+        wait = WebDriverWait(self.driver, 5)
+
+        wait.until(
+            EC.element_to_be_clickable(self.Definitions_menu)
+        ).click()
+
+        wait.until(
+            EC.element_to_be_clickable(self.Definitions_menu_base_info)
+        ).click()
+
+        wait.until(
+            EC.element_to_be_clickable(self.Definitions_menu_base_info_users)
+        ).click()
     
 
 

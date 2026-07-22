@@ -3,11 +3,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import MainMenu
 from selenium.webdriver.support.select import Select
+import time
 
 class CreateUserPage:
     def __init__(self,driver):
         self.driver = driver
-        self.new_user_button=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
+        self.new_user_button=((By.XPATH, "//a[contains(text(),'جدید')]"))
 
         self.user_firstname_field = ((By.ID,"FirstName"))
         self.user_lastname_field = ((By.ID,"LastName"))
@@ -19,14 +20,14 @@ class CreateUserPage:
         self.user_username_field = ((By.ID,"txtusername1"))
         self.user_password_field = ((By.ID,"txtpassword1"))
         self.user_repassword_field = ((By.ID,"RePassword"))
-        #self.user_role_field = ((By.ID,"Roles"))
-        #self.user_role_field = ((By.CSS_SELECTOR,".ng-isolate-scope ng-not-empty ng-valid .select2-selection--single"))
+        self.user_role_field = ((By.ID,"Roles"))
         self.user_passwordfaramooshi_field = ((By.ID,"PasswordFaramooshi"))
         self.user_personelli_field = ((By.ID,"Personneli"))
+        self.user_group_field = ((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/section[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[3]/div[5]/div[1]/div[2]/div[3]/div[1]/span[1]/span[1]/span[1]"))
         self.active_fromdate_field = ((By.ID,"txtFromDate"))
         self.active_todate_field = ((By.ID,"txtToDate"))
 
-        self.submit_button = ((By.XPATH,"(//button[contains(text(),'ثبت')])[1]"))
+        self.submit_button = ((By.XPATH,"//button[@title='توجه']"))
 
 
         #//////////////////////////////////////////////
@@ -40,11 +41,11 @@ class CreateUserPage:
         Side_Menu = MainMenu(self.driver)
         Side_Menu.create_user_menu()
         wait = WebDriverWait(self.driver, 5)
+        time.sleep(2)
         wait.until(
-        EC.visibility_of_element_located((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
-        )
+        EC.element_to_be_clickable(self.new_user_button)
+        ).click()
 
-        self.driver.find_element(*self.new_user_button).click()
         wait.until(
         EC.visibility_of_element_located((By.ID,"FirstName"))
         )
@@ -83,24 +84,28 @@ class CreateUserPage:
         self.driver.find_element(*self.user_repassword_field).send_keys(repassword)
 
     def enter_user_role(self,role):
-        #self.driver.find_element(*self.user_role_field).send_keys(role)
-        wait = WebDriverWait(self.driver, 5)
-        dropdown = wait.until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR,".ng-isolate-scope ng-not-empty ng-valid .select2-selection--single"))
-                    )
-        dropdown.click()
-
-# Click an option by its visible text
-        option = wait.until(
-        EC.element_to_be_clickable((By.XPATH,f"//li[contains(@class,'select2-results__option') and normalize-space()='{role}']"))
-                            )
-        option.click()
+        select_element = self.driver.find_element(*self.user_role_field)
+        select = Select(select_element)
+        select.select_by_visible_text(role)
 
     def enter_user_passwordfaramooshi(self,passwordfaramooshi):
         self.driver.find_element(*self.user_passwordfaramooshi_field).send_keys(passwordfaramooshi)
 
     def enter_user_personelli(self,personelli):
         self.driver.find_element(*self.user_personelli_field).send_keys(personelli)
+
+    def enter_user_group(self,group):
+        print(self.driver.find_elements(*self.user_group_field))
+        wait = WebDriverWait(self.driver, 5)
+        wait.until(
+        EC.element_to_be_clickable(self.user_group_field)
+            ).click()
+        
+        wait.until(
+        EC.element_to_be_clickable(
+        (By.XPATH, f"//li[normalize-space()='{group}']")
+        )
+            ).click()
 
     def enter_user_active_fromdate(self,active_fromdate):
         self.driver.find_element(*self.active_fromdate_field).send_keys(active_fromdate)
@@ -115,7 +120,7 @@ class CreateUserPage:
 
 
 
-    def create_new_user(self,firstname,lastname,meli,sex,barcode,cardnumber,expiredate,username,password,repassword,role,passwordfaramooshi,personelli,active_fromdate,active_todate):
+    def create_new_user(self,firstname,lastname,meli,sex,barcode,cardnumber,expiredate,username,password,repassword,role,passwordfaramooshi,personelli,group,active_fromdate,active_todate):
         self.enter_user_firstname(firstname)
         self.enter_user_lastname(lastname)
         self.enter_user_meli(meli)
@@ -129,6 +134,7 @@ class CreateUserPage:
         self.enter_user_role(role)
         self.enter_user_passwordfaramooshi(passwordfaramooshi)
         self.enter_user_personelli(personelli)
+        self.enter_user_group(group)
         self.enter_user_active_fromdate(active_fromdate)
         self.enter_user_active_todate(active_todate)
         self.click_create()

@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
 from Components.Main_Menu import MainMenu
 from PageObjects.Create_User_POM import CreateUserPage
+import time
 
 
 def test_create_new_user(setup):
@@ -21,10 +22,17 @@ def test_create_new_user(setup):
     wait.until(
     EC.visibility_of_element_located((By.XPATH, '//a[normalize-space()="جدید"]'))
     )
+    
     Create_user.new_user()
-    Create_user.create_new_user("عماد","عمادی","1111111141","مرد","32","32","1408/04/01","user32","Aa@12345","Aa@12345","کاربر","1","32","1404/04/01","1408/04/01")
-    New_created_group=wait.until(
+    
+    Create_user.create_new_user("عماد","عمادی","1111111141","مرد","32","32","1408/04/01","user32","Aa@12345","Aa@12345","کاربر","123","32","دانشجویان","1404/04/01","1408/04/01")
+    
+    
+    
+    New_created_user=wait.until(
     EC.visibility_of_element_located((By.XPATH, "(//td[@class='ng-binding'][normalize-space()='Supervisor'])[1]"))
     )
     
-    assert New_created_group.is_displayed(),"Create user should be successful but it is not"
+    assert New_created_user.is_displayed(),"Create user should be successful but it is not"
+
+   
