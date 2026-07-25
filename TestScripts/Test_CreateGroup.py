@@ -22,9 +22,9 @@ def test_create_new_group(setup):
     EC.visibility_of_element_located((By.XPATH, '//a[normalize-space()="جدید"]'))
     )
     group_management_page.open_new_group_form()
-    group_management_page.create_group("sel test","10000","100000")
+    group_management_page.create_group("اساتید","10000","100000")
     new_created_group=wait.until(
-    EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'sel test')])[1]"))
+    EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'اساتید')])[1]"))
     )
     
     assert new_created_group.is_displayed(),"Create group should be successful but it is not"

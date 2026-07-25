@@ -70,14 +70,14 @@ def test_valid_admin_login_logout(setup):
     driver=setup
     login_page = LoginPage(driver)
     login_page.login("supervisor","1")
-    Logout=UserIndexNav(driver)
+    logout=UserIndexNav(driver)
     
 
     wait = WebDriverWait(driver, 5)
     wait.until(
     EC.visibility_of_element_located((By.XPATH,'//*[@id="content-left"]/nav/div/ul/li[9]/a'))
     )
-    Logout.Logout()
+    logout.user_logout()
 
     LoggedOut_message = wait.until(
     EC.visibility_of_element_located((By.XPATH,"(//a[contains(text(),'اینجا')])[1]"))
@@ -91,14 +91,14 @@ def test_valid_user_login_logout(setup):
     driver=setup
     login_page = LoginPage(driver)
     login_page.login("user2","1")
-    Logout=UserIndexNav(driver)
+    logout=UserIndexNav(driver)
     
 
     wait = WebDriverWait(driver, 5)
     wait.until(
     EC.visibility_of_element_located((By.CSS_SELECTOR,"li.user-menu a.dropdown-toggle"))
     )
-    Logout.Logout()
+    logout.user_logout()
 
     LoggedOut_message = wait.until(
     EC.visibility_of_element_located((By.XPATH,"(//a[contains(text(),'اینجا')])[1]"))

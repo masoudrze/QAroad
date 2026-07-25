@@ -22,9 +22,9 @@ def test_create_new_meal(setup):
     EC.visibility_of_element_located((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
     )
     meal_management_page.open_new_meal_form()
-    meal_management_page.create_new_meal("عصرونه")
+    meal_management_page.create_new_meal("وعده تست")
     new_created_meal=wait.until(
-    EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'عصرونه')])[1]"))
+    EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'وعده تست')])[1]"))
     )
     
     assert new_created_meal.is_displayed(),"Create meal should be successful but it is not"

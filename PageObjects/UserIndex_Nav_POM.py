@@ -15,7 +15,7 @@ class UserIndexNav:
         self.driver.find_element(*self.logout_button_locator).click()
 
 
-    def logout(self):
+    def user_logout(self):
         wait = WebDriverWait(self.driver, 5)
         self.open_user_menu_dropdown()
         wait.until(
