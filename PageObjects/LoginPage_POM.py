@@ -1,24 +1,23 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
 class LoginPage:
     def __init__(self,driver):
         self.driver = driver
-        self.username_field = ((By.ID,"username"))
-        self.password_field = ((By.ID,"password"))
-        self.login_button = ((By.XPATH, '//button[text()="ورود"]'))
+        self.username_field_locator = ((By.ID,"username"))
+        self.password_field_locator = ((By.ID,"password"))
+        self.submit_button_locator = ((By.XPATH, '//button[text()="ورود"]'))
 
     def enter_username(self,username):
-        self.driver.find_element(*self.username_field).send_keys(username)
+        self.driver.find_element(*self.username_field_locator).send_keys(username)
     
     def enter_password(self,password):
-        self.driver.find_element(*self.password_field).send_keys(password)
+        self.driver.find_element(*self.password_field_locator).send_keys(password)
 
-    def click_login(self):
-        self.driver.find_element(*self.login_button).click()
+    def submit_form(self):
+        self.driver.find_element(*self.submit_button_locator).click()
 
     def login(self,username,password):
         self.enter_username(username)
         self.enter_password(password)
-        self.click_login()
+        self.submit_form()

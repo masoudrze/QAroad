@@ -8,8 +8,8 @@ from PageObjects.UserIndex_Nav_POM import UserIndexNav
 
 def test_invalid_admin_login(setup):
     driver=setup
-    Login_page = LoginPage(driver)
-    Login_page.login("supervisor","1111")
+    login_page = LoginPage(driver)
+    login_page.login("supervisor","1111")
 
     wait = WebDriverWait(driver, 5)
     actual_text = wait.until(
@@ -24,8 +24,8 @@ def test_invalid_admin_login(setup):
 
 def test_invalid_user_login(setup):
     driver=setup
-    Login_page = LoginPage(driver)
-    Login_page.login("user2","1111")
+    login_page = LoginPage(driver)
+    login_page.login("user2","1111")
 
     wait = WebDriverWait(driver, 5)
     actual_text = wait.until(
@@ -40,8 +40,8 @@ def test_invalid_user_login(setup):
 
 def test_valid_admin_login(setup):
     driver=setup
-    Login_page = LoginPage(driver)
-    Login_page.login("supervisor","1")
+    login_page = LoginPage(driver)
+    login_page.login("supervisor","1")
 
     wait = WebDriverWait(driver, 5)
     main_menu = wait.until(
@@ -55,8 +55,8 @@ def test_valid_admin_login(setup):
 
 def test_valid_user_login(setup):
     driver=setup
-    Login_page = LoginPage(driver)
-    Login_page.login("user2","1")
+    login_page = LoginPage(driver)
+    login_page.login("user2","1")
 
     wait = WebDriverWait(driver, 5)
     main_menu = wait.until(
@@ -68,8 +68,8 @@ def test_valid_user_login(setup):
 
 def test_valid_admin_login_logout(setup):
     driver=setup
-    Login_page = LoginPage(driver)
-    Login_page.login("supervisor","1")
+    login_page = LoginPage(driver)
+    login_page.login("supervisor","1")
     Logout=UserIndexNav(driver)
     
 
@@ -89,8 +89,8 @@ def test_valid_admin_login_logout(setup):
 
 def test_valid_user_login_logout(setup):
     driver=setup
-    Login_page = LoginPage(driver)
-    Login_page.login("user2","1")
+    login_page = LoginPage(driver)
+    login_page.login("user2","1")
     Logout=UserIndexNav(driver)
     
 
