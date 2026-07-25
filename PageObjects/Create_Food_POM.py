@@ -2,12 +2,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
+from selenium.webdriver.support.select import Select
 
 class FoodManagementPage:
     def __init__(self,driver):
         self.driver = driver
         self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
         self.name_field_locator = ((By.ID,"Foodname"))
+        self.foodtype_field_locator = ((By.XPATH, '//*[@id="ListFoodTypes"]/select'))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
 
 
@@ -28,13 +30,20 @@ class FoodManagementPage:
 
     def enter_name(self,name):
         self.driver.find_element(*self.name_field_locator).send_keys(name)
+
+    def enter_foodtype(self,foodtype):
+        #self.driver.find_element(*self.foodtype_field_locator).send_keys(foodtype)
+        self.driver.find_element(*self.foodtype_field_locator)
+        select = Select(self.driver.find_element(*self.foodtype_field_locator))
+        select.select_by_visible_text(foodtype)
     
     def submit_form(self):
         self.driver.find_element(*self.submit_button_locator).click()
 
 
 
-    def create_new_food(self,name):
+    def create_food(self,name,foodtype):
         self.enter_name(name)
+        self.enter_foodtype(foodtype)
         self.submit_form()
         

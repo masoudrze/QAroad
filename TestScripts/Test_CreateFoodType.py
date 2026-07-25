@@ -22,7 +22,7 @@ def test_create_new_foodtype(setup):
     EC.visibility_of_element_located((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
     )
     foodtype_management_page.open_new_foodtype_form()
-    foodtype_management_page.create_new_foodtype("نوشیدنی")
+    foodtype_management_page.create_foodtype("نوشیدنی")
     new_created_foodtype=wait.until(
     EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'نوشیدنی')])[1]"))
     )

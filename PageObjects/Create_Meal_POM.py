@@ -34,7 +34,7 @@ class MealManagementPage:
 
 
 
-    def create_new_meal(self,name):
+    def create_meal(self,name):
         self.enter_name(name)
         self.submit_form()
         

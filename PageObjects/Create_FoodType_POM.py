@@ -34,7 +34,7 @@ class FoodTypeManagementPage:
 
 
 
-    def create_new_foodtype(self,name):
+    def create_foodtype(self,name):
         self.enter_name(name)
         self.submit_form()
         
