@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
+from Components.Group_selection import GroupSelection
 
 class FoodPriceManagementPage:
     def __init__(self,driver):
@@ -12,15 +13,20 @@ class FoodPriceManagementPage:
 
 
 
-    def open_new_foodprice_form(self):
+
+    def open_new_foodprice_form(self,group_name):
         side_menu = SideMenu(self.driver)
+        group_selection = GroupSelection(self.driver)
+
         side_menu.navigate_to_foodprice_page()
         wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.visibility_of_element_located(self.new_button_locator)
         )
-
-        self.driver.find_element(*self.new_button_locator).click()
+        group_selection.select_group(group_name)
+        wait.until(
+        EC.element_to_be_clickable(self.new_button_locator)
+        ).click()
         wait.until(
         EC.visibility_of_element_located(self.submit_button_locator)
         )
@@ -35,6 +41,8 @@ class FoodPriceManagementPage:
 
 
     def create_new_foodprice(self,name):
+        #group_selection = GroupSelection(self.driver)
+        #group_selection.select_group(group_name)
         self.enter_name(name)
         self.submit_form()
         
