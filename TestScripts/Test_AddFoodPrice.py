@@ -25,11 +25,11 @@ def test_add_new_foodprice(setup):
     food_price_management_page.open_new_foodprice_form("دانشجویان")
 
     time.sleep(4)
-    '''
-    food_price_management_page.create_food("نوشابه","نوشیدنی")
+    
+    food_price_management_page.create_new_foodprice("نوشابه","250000","50000","250000","250000","مکمل")
     new_created_food=wait.until(
     EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'نوشابه')])[1]"))
     )
 
     assert new_created_food.is_displayed(),"Create food should be successful but it is not"
-    '''
+    

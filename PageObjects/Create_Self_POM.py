@@ -28,13 +28,13 @@ class SelfManagementPage:
 
 
     def enter_name(self,name):
-        self.driver.find_element(*self.name_field).send_keys(name)
+        self.driver.find_element(*self.name_field_locator).send_keys(name)
 
     def enter_capacity(self,capacity):
-        self.driver.find_element(*self.capacity_field).send_keys(capacity)
+        self.driver.find_element(*self.capacity_field_locator).send_keys(capacity)
     
     def submit_form(self):
-        self.driver.find_element(*self.submit_button).click()
+        self.driver.find_element(*self.submit_button_locator).click()
 
 
 
