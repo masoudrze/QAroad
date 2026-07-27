@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
 from Components.Main_Menu import SideMenu
 from PageObjects.Create_FoodPrice_POM import FoodPriceManagementPage
+from Helpers.data_loader import DataLoader
 import time
 
 
@@ -13,7 +14,7 @@ def test_add_new_foodprice(setup):
     side_menu = SideMenu(driver)
     food_price_management_page = FoodPriceManagementPage(driver)
 
-    login_page.login("supervisor","1")
+    login_page.login(**DataLoader.load_login("admin_pass"))
     wait = WebDriverWait(driver, 5)
     wait.until(
     EC.visibility_of_element_located((By.ID, "main-menu"))

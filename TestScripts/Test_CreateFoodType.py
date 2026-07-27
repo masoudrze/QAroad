@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
 from Components.Main_Menu import SideMenu
 from PageObjects.Create_FoodType_POM import FoodTypeManagementPage
+from Helpers.data_loader import DataLoader
 
 
 def test_create_new_foodtype(setup):
@@ -12,7 +13,7 @@ def test_create_new_foodtype(setup):
     side_menu = SideMenu(driver)
     foodtype_management_page = FoodTypeManagementPage(driver)
 
-    login_page.login("supervisor","1")
+    llogin_page.login(**DataLoader.load_login("admin_pass"))
     wait = WebDriverWait(driver, 5)
     wait.until(
     EC.visibility_of_element_located((By.ID, "main-menu"))
