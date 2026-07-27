@@ -1,0 +1,22 @@
+{
+    "admin_pass": {
+        "username": "supervisor",
+        "password": "1"
+    },
+
+    "user_pass": {
+        "username": "user2",
+        "password": "1"
+    },
+
+        "admin_fail": {
+        "username": "supervisor",
+        "password": "1111"
+    },
+
+    "user_fail": {
+        "username": "user2",
+        "password": "1111"
+    }
+
+}

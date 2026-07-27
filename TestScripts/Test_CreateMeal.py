@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
 from Components.Main_Menu import SideMenu
 from PageObjects.Create_Meal_POM import MealManagementPage
-
 from Helpers.data_loader import DataLoader
 
 
@@ -13,8 +12,9 @@ def test_create_new_meal(setup):
     login_page = LoginPage(driver)
     side_menu = SideMenu(driver)
     meal_management_page = MealManagementPage(driver)
+    meal_data = DataLoader.load_meal("default")
 
-    login_page.login("supervisor","1")
+    login_page.login(**DataLoader.load_login("admin_pass"))
     wait = WebDriverWait(driver, 5)
     wait.until(
     EC.visibility_of_element_located((By.ID, "main-menu"))
@@ -24,16 +24,12 @@ def test_create_new_meal(setup):
     EC.visibility_of_element_located((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
     )
     meal_management_page.open_new_meal_form()
-    #meal_management_page.create_meal("وعده تست")
 
-    meal = DataLoader.load_meal("default")
-
-    meal_management_page.create_meal(meal["name"])
+    meal_management_page.create_meal(meal_data["name"])
 
     new_created_meal=wait.until(
     EC.visibility_of_element_located(
-        (By.XPATH, f"(//td[contains(text(),'{meal['name']}')])[1]")
-        #(By.XPATH, "(//td[contains(text(),'وعده تست')])[1]")
+        (By.XPATH, f"(//td[contains(text(),'{meal_data['name']}')])[1]")
         )
     )
     

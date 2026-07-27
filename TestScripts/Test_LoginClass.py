@@ -3,13 +3,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.UserIndex_Nav_POM import UserIndexNav
-
+from Helpers.data_loader import DataLoader
 
 
 def test_invalid_admin_login(setup):
     driver=setup
     login_page = LoginPage(driver)
-    login_page.login("supervisor","1111")
+    login_page.login(**DataLoader.load_login("admin_fail"))
 
     wait = WebDriverWait(driver, 5)
     actual_text = wait.until(
@@ -25,7 +25,7 @@ def test_invalid_admin_login(setup):
 def test_invalid_user_login(setup):
     driver=setup
     login_page = LoginPage(driver)
-    login_page.login("user2","1111")
+    login_page.login(**DataLoader.load_login("user_fail"))
 
     wait = WebDriverWait(driver, 5)
     actual_text = wait.until(
@@ -41,7 +41,7 @@ def test_invalid_user_login(setup):
 def test_valid_admin_login(setup):
     driver=setup
     login_page = LoginPage(driver)
-    login_page.login("supervisor","1")
+    login_page.login(**DataLoader.load_login("admin_pass"))
 
     wait = WebDriverWait(driver, 5)
     main_menu = wait.until(
@@ -56,7 +56,7 @@ def test_valid_admin_login(setup):
 def test_valid_user_login(setup):
     driver=setup
     login_page = LoginPage(driver)
-    login_page.login("user2","1")
+    login_page.login(**DataLoader.load_login("user_pass"))
 
     wait = WebDriverWait(driver, 5)
     main_menu = wait.until(
