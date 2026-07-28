@@ -11,17 +11,20 @@ class UserIndexNav:
     def open_user_menu_dropdown(self):
         self.driver.find_element(*self.user_menu_dropdown_locator).click()
 
-    def submit_form(self):
-        self.driver.find_element(*self.logout_button_locator).click()
-
 
     def user_logout(self):
         wait = WebDriverWait(self.driver, 5)
         self.open_user_menu_dropdown()
         wait.until(
-        EC.visibility_of_element_located(self.logout_button_locator)
-        )
-        self.submit_form()
+        EC.element_to_be_clickable(self.logout_button_locator)
+        ).click()
+
+
+
+    def is_logged_out(self):
+        return WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH,"(//a[contains(text(),'اینجا')])[1]"))
+        ).is_displayed()
 
 
 

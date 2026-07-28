@@ -10,101 +10,46 @@ def test_invalid_admin_login(setup):
     driver=setup
     login_page = LoginPage(driver)
     login_page.login(**DataLoader.load_login("admin_fail"))
-
-    wait = WebDriverWait(driver, 5)
-    actual_text = wait.until(
-    EC.visibility_of_element_located(
-        (By.CSS_SELECTOR, ".login-alert.ng-binding")
-    )
-    ).text
     expected_text = "نام کاربری و یا کلمه عبور اشتباه است."
-
-    assert expected_text in actual_text,"login should be failed but it is not"
+    assert expected_text in login_page.login_failed_message()
 
 
 def test_invalid_user_login(setup):
     driver=setup
     login_page = LoginPage(driver)
     login_page.login(**DataLoader.load_login("user_fail"))
-
-    wait = WebDriverWait(driver, 5)
-    actual_text = wait.until(
-    EC.visibility_of_element_located(
-        (By.CSS_SELECTOR, ".login-alert.ng-binding")
-    )
-    ).text
     expected_text = "نام کاربری و یا کلمه عبور اشتباه است."
-
-    assert expected_text in actual_text,"login should be failed but it is not"
+    assert expected_text in login_page.login_failed_message()
 
 
 def test_valid_admin_login(setup):
-    driver=setup
-    login_page = LoginPage(driver)
+    login_page = LoginPage(setup)
     login_page.login(**DataLoader.load_login("admin_pass"))
-
-    wait = WebDriverWait(driver, 5)
-    main_menu = wait.until(
-    EC.visibility_of_element_located((By.ID, "main-menu"))
-    )
-    assert main_menu.is_displayed(),"login should be successful but it is not"
-
-
-
+    assert login_page.is_admin_dashboard_displayed(),"login should be successful but it is not"
 
 
 def test_valid_user_login(setup):
-    driver=setup
-    login_page = LoginPage(driver)
+    login_page = LoginPage(setup)
     login_page.login(**DataLoader.load_login("user_pass"))
-
-    wait = WebDriverWait(driver, 5)
-    main_menu = wait.until(
-    EC.visibility_of_element_located((By.XPATH, "//a[@class='user-panel']"))
-    )
-    assert main_menu.is_displayed(),"login should be successful but it is not"
-
+    assert login_page.is_user_dashboard_displayed(),"login should be successful but it is not"
 
 
 def test_valid_admin_login_logout(setup):
     driver=setup
     login_page = LoginPage(driver)
-    login_page.login("supervisor","1")
+    login_page.login(**DataLoader.load_login("admin_pass"))
     logout=UserIndexNav(driver)
-    
-
-    wait = WebDriverWait(driver, 5)
-    wait.until(
-    EC.visibility_of_element_located((By.XPATH,'//*[@id="content-left"]/nav/div/ul/li[9]/a'))
-    )
     logout.user_logout()
-
-    LoggedOut_message = wait.until(
-    EC.visibility_of_element_located((By.XPATH,"(//a[contains(text(),'اینجا')])[1]"))
-    )
-
-    assert LoggedOut_message.is_displayed(),"logout should be successful but it is not"
-
+    assert logout.is_logged_out(),"logout should be successful but it is not"
 
 
 def test_valid_user_login_logout(setup):
     driver=setup
     login_page = LoginPage(driver)
-    login_page.login("user2","1")
+    login_page.login(**DataLoader.load_login("user_pass"))
     logout=UserIndexNav(driver)
-    
-
-    wait = WebDriverWait(driver, 5)
-    wait.until(
-    EC.visibility_of_element_located((By.CSS_SELECTOR,"li.user-menu a.dropdown-toggle"))
-    )
     logout.user_logout()
-
-    LoggedOut_message = wait.until(
-    EC.visibility_of_element_located((By.XPATH,"(//a[contains(text(),'اینجا')])[1]"))
-    )
-
-    assert LoggedOut_message.is_displayed(),"logout should be successful but it is not"
+    assert logout.is_logged_out(),"logout should be successful but it is not"
 
 
 
