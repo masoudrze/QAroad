@@ -1,0 +1,22 @@
+{
+    "default": {
+        "name": "قرمه سبزی",
+        "foodtype": "غذا"
+    },
+
+
+    "duplicate_food": {
+        "name": "قرمه سبزی",
+        "capacity": "0"
+    },
+
+    "long_name": {
+        "name": "قرمه سبزی با گوشت گوسفندی و سبزی سرخ شده با روغن بدون پالم",
+        "capacity": "0"
+    },
+
+    "empty_name": {
+        "name": "",
+        "capacity": "0"
+    }
+}

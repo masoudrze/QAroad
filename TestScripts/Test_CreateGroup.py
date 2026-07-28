@@ -12,6 +12,7 @@ def test_create_new_group(setup):
     login_page = LoginPage(driver)
     side_menu = SideMenu(driver)
     group_management_page = GroupManagementPage(driver)
+    group_data = DataLoader.load_group("default")
 
     login_page.login(**DataLoader.load_login("admin_pass"))
     wait = WebDriverWait(driver, 5)
@@ -23,7 +24,7 @@ def test_create_new_group(setup):
     EC.visibility_of_element_located((By.XPATH, '//a[normalize-space()="جدید"]'))
     )
     group_management_page.open_new_group_form()
-    group_management_page.create_group("اساتید","10000","100000")
+    group_management_page.create_group(group_data["name"], group_data["MinIncreaseCredit"], group_data["MaxIncreaseCredit"])
     new_created_group=wait.until(
     EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'اساتید')])[1]"))
     )

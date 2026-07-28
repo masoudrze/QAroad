@@ -1,0 +1,40 @@
+{
+    "default": {
+        "name": "قرمه سبزی",
+        "free_price": "1500000",
+        "yarane_price" : "500000",
+        "rozforoosh_price" : "1500000",
+        "bireserve_price" : "1500000",
+        "meal_name" : "ناهار"
+    },
+
+
+    "duplicate_foodprice": {
+        "name": "قرمه سبزی",
+        "free_price": "1500000",
+        "yarane_price" : "500000",
+        "rozforoosh_price" : "1500000",
+        "bireserve_price" : "1500000",
+        "meal_name" : "ناهار"
+
+   
+    },
+
+    "long_name": {
+        "name": "قرمه سبزی",
+        "free_price": "1500000",
+        "yarane_price" : "500000",
+        "rozforoosh_price" : "1500000",
+        "bireserve_price" : "1500000",
+        "meal_name" : "ناهار"
+    },
+
+    "empty_name": {
+        "name": "قرمه سبزی",
+        "free_price": "1500000",
+        "yarane_price" : "500000",
+        "rozforoosh_price" : "1500000",
+        "bireserve_price" : "1500000",
+        "meal_name" : "ناهار"
+    }
+}

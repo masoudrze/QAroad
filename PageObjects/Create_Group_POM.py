@@ -19,12 +19,10 @@ class GroupManagementPage:
         side_menu.navigate_to_group_page()
         wait = WebDriverWait(self.driver, 5)
         wait.until(
-        EC.visibility_of_element_located(self.new_button_locator)
-        )
-
-        self.driver.find_element(*self.new_button_locator).click()
+        EC.element_to_be_clickable(self.new_button_locator)
+        ).click()
         wait.until(
-        EC.visibility_of_element_located(self.submit_button_locator)
+        EC.element_to_be_clickable(self.submit_button_locator)
         )
 
 
@@ -43,8 +41,15 @@ class GroupManagementPage:
 
 
     def create_group(self,name,MinIncreaseCredit,MaxIncreaseCredit):
+        wait = WebDriverWait(self.driver, 5)
+        self.open_new_group_form()
         self.enter_name(name)
         self.enter_MinIncreaseCredit(MinIncreaseCredit)
         self.enter_MaxIncreaseCredit(MaxIncreaseCredit)
         self.submit_form()
+        new_created_group=wait.until(
+        EC.visibility_of_element_located((By.XPATH, f"(//td[contains(text(),'{name}')])[1]"))
+        )
+    
+        assert new_created_group.is_displayed(),"Create group should be successful but it is not"
         

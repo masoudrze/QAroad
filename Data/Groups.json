@@ -1,0 +1,19 @@
+{
+    "default": {
+        "name": "دانشجویان پزشکی",
+        "MinIncreaseCredit": "10000",
+        "MaxIncreaseCredit": "1000000"
+    },
+
+    "long_name": {
+        "name": "دانشجویان ورودی سال 1405 پزشکی بخش داروسازی",
+        "MinIncreaseCredit": "10000",
+        "MaxIncreaseCredit": "1000000"
+    },
+
+    "empty_name": {
+        "name": "",
+        "MinIncreaseCredit": "10000",
+        "MaxIncreaseCredit": "1000000"
+    }
+}
