@@ -87,7 +87,7 @@ class UserManagementPage:
 
     def enter_group(self,group):
         print(self.driver.find_elements(*self.group_field_locator))
-        wait = WebDriverWait(self.driver, 5)
+        wait = WebDriverWait(self.driver, 100)
         wait.until(
         EC.element_to_be_clickable(self.group_field_locator)
             ).click()
