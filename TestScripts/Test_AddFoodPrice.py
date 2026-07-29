@@ -8,8 +8,7 @@ from Helpers.data_loader import DataLoader
 import time
 
 
-def test_add_new_foodprice(setup):
-    driver=setup
+def test_add_new_foodprice(driver):
     login_page = LoginPage(driver)
     side_menu = SideMenu(driver)
     food_price_management_page = FoodPriceManagementPage(driver)

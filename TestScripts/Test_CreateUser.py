@@ -7,8 +7,7 @@ from PageObjects.Create_User_POM import UserManagementPage
 from Helpers.data_loader import DataLoader
 
 
-def test_create_new_user(setup):
-    driver=setup
+def test_create_new_user(driver):
     login_page = LoginPage(driver)
     user_management_page = UserManagementPage(driver)
     user_data = DataLoader.load_user("default")

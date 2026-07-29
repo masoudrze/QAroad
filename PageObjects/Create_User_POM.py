@@ -3,12 +3,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
 from selenium.webdriver.support.select import Select
+import time
 
 class UserManagementPage:
     def __init__(self,driver):
         self.driver = driver
         self.new_button_locator=((By.XPATH, "//a[contains(text(),'جدید')]"))
-
         self.firstname_field_locator = ((By.ID,"FirstName"))
         self.lastname_field_locator = ((By.ID,"LastName"))
         self.meli_field_locator = ((By.ID,"Meli"))

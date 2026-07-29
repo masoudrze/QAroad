@@ -7,13 +7,12 @@ from PageObjects.Create_FoodType_POM import FoodTypeManagementPage
 from Helpers.data_loader import DataLoader
 
 
-def test_create_new_foodtype(setup):
-    driver=setup
+def test_create_new_foodtype(driver):
     login_page = LoginPage(driver)
     side_menu = SideMenu(driver)
     foodtype_management_page = FoodTypeManagementPage(driver)
 
-    llogin_page.login(**DataLoader.load_login("admin_pass"))
+    login_page.login(**DataLoader.load_login("admin_pass"))
     wait = WebDriverWait(driver, 5)
     wait.until(
     EC.visibility_of_element_located((By.ID, "main-menu"))

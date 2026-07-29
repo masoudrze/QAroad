@@ -7,8 +7,7 @@ from PageObjects.Create_Food_POM import FoodManagementPage
 from Helpers.data_loader import DataLoader
 
 
-def test_create_new_food(setup):
-    driver=setup
+def test_create_new_food(driver):
     login_page = LoginPage(driver)
     side_menu = SideMenu(driver)
     food_management_page = FoodManagementPage(driver)

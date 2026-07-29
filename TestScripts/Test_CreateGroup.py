@@ -3,9 +3,9 @@ from PageObjects.Create_Group_POM import GroupManagementPage
 from Helpers.data_loader import DataLoader
 
 
-def test_create_new_group(setup):
-    login_page = LoginPage(setup)
-    group_management_page = GroupManagementPage(setup)
+def test_create_new_group(driver):
+    login_page = LoginPage(driver)
+    group_management_page = GroupManagementPage(driver)
     group_data = DataLoader.load_group("default")
     login_page.login(**DataLoader.load_login("admin_pass"))
     group_management_page.create_group(**DataLoader.load_group("default"))

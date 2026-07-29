@@ -25,3 +25,9 @@ Thumbs.db
 Desktop.ini
 
 githubtoken.txt
+
+# Ignore everything inside screenshots
+screenshots/*
+
+# But keep this file
+!screenshots/.gitkeep

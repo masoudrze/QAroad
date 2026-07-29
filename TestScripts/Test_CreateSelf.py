@@ -7,8 +7,7 @@ from PageObjects.Create_Self_POM import SelfManagementPage
 from Helpers.data_loader import DataLoader
 
 
-def test_create_new_self(setup):
-    driver=setup
+def test_create_new_self(driver):
     login_page = LoginPage(driver)
     side_menu = SideMenu(driver)
     self_management_page = SelfManagementPage(driver)
