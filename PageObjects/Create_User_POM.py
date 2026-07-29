@@ -112,6 +112,7 @@ class UserManagementPage:
 
 
     def create_user(self,firstname,lastname,meli,sex,barcode,cardnumber,expiredate,username,password,repassword,role,passwordfaramooshi,personelli,group,active_fromdate,active_todate):
+        self.open_new_user_form()
         self.enter_firstname(firstname)
         self.enter_lastname(lastname)
         self.enter_meli(meli)
@@ -129,4 +130,10 @@ class UserManagementPage:
         self.enter_active_fromdate(active_fromdate)
         self.enter_active_todate(active_todate)
         self.submit_form()
+
+
+    def is_user_created(self,name):
+        return WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, f"(//td[@class='ng-binding'][normalize-space()='{name}'])[1]"))
+        ).is_displayed()
         

@@ -1,0 +1,58 @@
+{
+    "default": {
+        "firstname": "امین",
+        "lastname": "امینی",
+        "meli": "1111111143",
+        "sex": "مرد",
+        "barcode": "34",
+        "cardnumber": "34",
+        "expiredate": "1408/04/01",
+        "username": "user34",
+        "password": "Aa@12345",
+        "repassword": "Aa@12345",
+        "role": "کاربر",
+        "passwordfaramooshi": "123",
+        "personelli": "34",
+        "group": "دانشجویان",
+        "active_fromdate": "1404/04/01",
+        "active_todate": "1408/04/01"
+    },
+
+    "long_name": {
+        "firstname": "امین",
+        "lastname": "امینی",
+        "meli": "1111111143",
+        "sex": "مرد",
+        "barcode": "34",
+        "cardnumber": "34",
+        "expiredate": "1408/04/01",
+        "username": "user34",
+        "password": "Aa@12345",
+        "repassword": "Aa@12345",
+        "role": "کاربر",
+        "passwordfaramooshi": "123",
+        "personelli": "34",
+        "group": "دانشجویان",
+        "active_fromdate": "1404/04/01",
+        "active_todate": "1408/04/01"
+    },
+
+    "empty_name": {
+        "firstname": "امین",
+        "lastname": "امینی",
+        "meli": "1111111143",
+        "sex": "مرد",
+        "barcode": "34",
+        "cardnumber": "34",
+        "expiredate": "1408/04/01",
+        "username": "user34",
+        "password": "Aa@12345",
+        "repassword": "Aa@12345",
+        "role": "کاربر",
+        "passwordfaramooshi": "123",
+        "personelli": "34",
+        "group": "دانشجویان",
+        "active_fromdate": "1404/04/01",
+        "active_todate": "1408/04/01"
+    }
+}

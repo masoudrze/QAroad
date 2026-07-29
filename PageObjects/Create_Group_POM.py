@@ -41,18 +41,12 @@ class GroupManagementPage:
 
 
     def create_group(self,name,MinIncreaseCredit,MaxIncreaseCredit):
-        wait = WebDriverWait(self.driver, 5)
         self.open_new_group_form()
         self.enter_name(name)
         self.enter_MinIncreaseCredit(MinIncreaseCredit)
         self.enter_MaxIncreaseCredit(MaxIncreaseCredit)
         self.submit_form()
-        '''
-        new_created_group=wait.until(
-        EC.visibility_of_element_located((By.XPATH, f"(//td[contains(text(),'{name}')])[1]"))
-        )    
-        assert new_created_group.is_displayed(),"Create group should be successful but it is not"
-        '''
+
 
     def is_group_created(self,name):
         return WebDriverWait(self.driver, 5).until(

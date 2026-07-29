@@ -33,6 +33,10 @@ class DataLoader:
     def load_group(key):
         return DataLoader._load("Groups.json", key)
 
+    @staticmethod
+    def load_user(key):
+        return DataLoader._load("Users.json", key)
+
 
     @staticmethod
     def load_meal(key):
