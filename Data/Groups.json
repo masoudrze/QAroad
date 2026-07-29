@@ -1,6 +1,6 @@
 {
     "default": {
-        "name": "دانشجویان پزشکی",
+        "name": "دانشجویان پرستاری",
         "MinIncreaseCredit": "10000",
         "MaxIncreaseCredit": "1000000"
     },

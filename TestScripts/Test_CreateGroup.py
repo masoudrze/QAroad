@@ -1,32 +1,13 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
-from Components.Main_Menu import SideMenu
 from PageObjects.Create_Group_POM import GroupManagementPage
 from Helpers.data_loader import DataLoader
 
 
 def test_create_new_group(setup):
-    driver=setup
-    login_page = LoginPage(driver)
-    side_menu = SideMenu(driver)
-    group_management_page = GroupManagementPage(driver)
+    login_page = LoginPage(setup)
+    group_management_page = GroupManagementPage(setup)
     group_data = DataLoader.load_group("default")
-
     login_page.login(**DataLoader.load_login("admin_pass"))
-    wait = WebDriverWait(driver, 5)
-    wait.until(
-    EC.visibility_of_element_located((By.ID, "main-menu"))
-    )
-    side_menu.navigate_to_group_page()
-    wait.until(
-    EC.visibility_of_element_located((By.XPATH, '//a[normalize-space()="جدید"]'))
-    )
-    group_management_page.open_new_group_form()
-    group_management_page.create_group(group_data["name"], group_data["MinIncreaseCredit"], group_data["MaxIncreaseCredit"])
-    new_created_group=wait.until(
-    EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'اساتید')])[1]"))
-    )
-    
-    assert new_created_group.is_displayed(),"Create group should be successful but it is not"
+    group_management_page.create_group(**DataLoader.load_group("default"))
+
+    assert group_management_page.is_group_created(group_data["name"]),"Create group should be successful but it is not"

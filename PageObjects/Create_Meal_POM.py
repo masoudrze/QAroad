@@ -17,10 +17,8 @@ class MealManagementPage:
         side_menu.navigate_to_meal_page()
         wait = WebDriverWait(self.driver, 5)
         wait.until(
-        EC.visibility_of_element_located(self.new_button_locator)
-        )
-
-        self.driver.find_element(*self.new_button_locator).click()
+        EC.element_to_be_clickable(self.new_button_locator)
+        ).click()
         wait.until(
         EC.visibility_of_element_located(self.submit_button_locator)
         )
@@ -35,6 +33,7 @@ class MealManagementPage:
 
 
     def create_meal(self,name):
+        self.open_new_meal_form()
         self.enter_name(name)
         self.submit_form()
         

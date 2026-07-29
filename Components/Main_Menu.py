@@ -75,7 +75,7 @@ class SideMenu:
 
     def navigate_to_self_page(self):
             wait = WebDriverWait(self.driver, 5)
-        
+
             wait.until(
                 EC.element_to_be_clickable(self.Definitions_locator)
             ).click()
