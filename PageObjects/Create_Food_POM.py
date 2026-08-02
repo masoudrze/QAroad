@@ -3,18 +3,27 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
 from selenium.webdriver.support.select import Select
+from Components.Base_page import BasePage
 
 
-class FoodManagementPage:
+class FoodManagementPage(BasePage):
     def __init__(self,driver):
-        self.driver = driver
+        super().__init__(driver)
         self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
         self.name_field_locator = ((By.ID,"Foodname"))
         self.foodtype_field_locator = ((By.XPATH, '//*[@id="ListFoodTypes"]/select'))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
+        self.error_message_locator = (By.CSS_SELECTOR,"#toast-container .toast-message div")
 
 
 
+    def is_food_created(self, name):
+        locator = (
+            By.XPATH,
+            f"(//td[contains(text(),'{name}')])[1]"
+        )
+        return self.is_visible(locator)
+    
 
     def open_new_food_form(self):
         side_menu = SideMenu(self.driver)
@@ -37,10 +46,9 @@ class FoodManagementPage:
         self.driver.find_element(*self.foodtype_field_locator)
         select = Select(self.driver.find_element(*self.foodtype_field_locator))
         select.select_by_visible_text(foodtype)
-    
+
     def submit_form(self):
         self.driver.find_element(*self.submit_button_locator).click()
-
 
 
     def create_food(self,name,foodtype):
@@ -49,8 +57,18 @@ class FoodManagementPage:
         self.enter_foodtype(foodtype)
         self.submit_form()
 
+        
 
-    def is_food_created(self,name):
-        return WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, f"(//td[contains(text(),'{name}')])[1]"))
-        ).is_displayed()
+        if error := self.get_error_message(self.error_message_locator, timeout=2):
+            return False, error
+
+        return self.is_food_created(name), None
+
+
+
+
+    
+
+
+
+
