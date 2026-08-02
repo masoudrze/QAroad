@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
 from selenium.webdriver.support.select import Select
 
+
 class FoodManagementPage:
     def __init__(self,driver):
         self.driver = driver
@@ -11,6 +12,7 @@ class FoodManagementPage:
         self.name_field_locator = ((By.ID,"Foodname"))
         self.foodtype_field_locator = ((By.XPATH, '//*[@id="ListFoodTypes"]/select'))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
+
 
 
 
@@ -32,7 +34,6 @@ class FoodManagementPage:
         self.driver.find_element(*self.name_field_locator).send_keys(name)
 
     def enter_foodtype(self,foodtype):
-        #self.driver.find_element(*self.foodtype_field_locator).send_keys(foodtype)
         self.driver.find_element(*self.foodtype_field_locator)
         select = Select(self.driver.find_element(*self.foodtype_field_locator))
         select.select_by_visible_text(foodtype)
@@ -43,7 +44,13 @@ class FoodManagementPage:
 
 
     def create_food(self,name,foodtype):
+        self.open_new_food_form()
         self.enter_name(name)
         self.enter_foodtype(foodtype)
         self.submit_form()
-        
+
+
+    def is_food_created(self,name):
+        return WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, f"(//td[contains(text(),'{name}')])[1]"))
+        ).is_displayed()
