@@ -2,11 +2,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
+from Components.Base_page import BasePage
 from Components.Group_selection import GroupSelection
 
-class FoodPriceManagementPage:
+
+class FoodPriceManagementPage(BasePage):
     def __init__(self,driver):
-        self.driver = driver
+        super().__init__(driver)
         self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
         self.name_field_locator = ((By.ID,"txtMealName"))
         self.free_price_field_locator = ((By.ID,"FreePrice"))
@@ -16,6 +18,12 @@ class FoodPriceManagementPage:
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
 
 
+    def is_foodprice_created(self, name):
+        locator = (
+            By.XPATH,
+            f"(//td[contains(text(),'{name}')])[1]"
+        )
+        return self.is_visible(locator)
 
 
     def open_new_foodprice_form(self,group_name):
@@ -76,4 +84,7 @@ class FoodPriceManagementPage:
         self.enter_bireserve_price(bireserve_price)
         self.select_meal(meal_name)
         self.submit_form()
-        
+
+        if error := self.get_error_message(self.error_message_locator, timeout=2):
+            return False, error
+        return self.is_foodprice_created(name), None

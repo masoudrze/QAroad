@@ -13,18 +13,12 @@ def test_create_new_foodtype(driver):
     foodtype_management_page = FoodTypeManagementPage(driver)
 
     login_page.login(**DataLoader.load_login("admin_pass"))
-    wait = WebDriverWait(driver, 5)
-    wait.until(
-    EC.visibility_of_element_located((By.ID, "main-menu"))
+
+
+    success, error = foodtype_management_page.create_foodtype(**DataLoader.load_foodtype("default"))
+
+    assert success, (
+        f"Create food failed. Server message: {error}"
+        if error
+        else "Create food should be successful but it was not."
     )
-    side_menu.navigate_to_foodtype_page()
-    wait.until(
-    EC.visibility_of_element_located((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
-    )
-    foodtype_management_page.open_new_foodtype_form()
-    foodtype_management_page.create_foodtype("نوشیدنی")
-    new_created_foodtype=wait.until(
-    EC.visibility_of_element_located((By.XPATH, "(//td[contains(text(),'نوشیدنی')])[1]"))
-    )
-    
-    assert new_created_foodtype.is_displayed(),"Create foodtype should be successful but it is not"

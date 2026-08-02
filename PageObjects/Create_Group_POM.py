@@ -2,16 +2,25 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
+from Components.Base_page import BasePage
 
-class GroupManagementPage:
+class GroupManagementPage(BasePage):
     def __init__(self,driver):
-        self.driver = driver
+        super().__init__(driver)
         self.new_button_locator=((By.XPATH, "//a[@title='گروه جدید']"))
         self.name_field_locator = ((By.ID,"Groupname"))
         self.MinIncreaseCredit_field_locator = ((By.ID,"MinIncreaseCredit"))
         self.MaxIncreaseCredit_field_locator = ((By.ID,"MaxIncreaseCredit"))
         self.submit_button_locator = ((By.XPATH,"(//button[contains(text(),'ثبت')])[1]"))
+        self.error_message_locator = (By.CSS_SELECTOR,"#toast-container .toast-message div")
 
+
+    def is_group_created(self, name):
+        locator = (
+            By.XPATH,
+            f"(//td[contains(text(),'{name}')])[1]"
+        )
+        return self.is_visible(locator)
 
 
     def open_new_group_form(self):
@@ -47,9 +56,8 @@ class GroupManagementPage:
         self.enter_MaxIncreaseCredit(MaxIncreaseCredit)
         self.submit_form()
 
+        if error := self.get_error_message(self.error_message_locator, timeout=2):
+            return False, error
+        return self.is_group_created(name), None
 
-    def is_group_created(self,name):
-        return WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, f"(//td[contains(text(),'{name}')])[1]"))
-        ).is_displayed()
         

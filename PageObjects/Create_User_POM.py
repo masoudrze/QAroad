@@ -2,12 +2,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
+from Components.Base_page import BasePage
 from selenium.webdriver.support.select import Select
-import time
 
-class UserManagementPage:
+
+class UserManagementPage(BasePage):
     def __init__(self,driver):
-        self.driver = driver
+        super().__init__(driver)
         self.new_button_locator=((By.XPATH, "//a[contains(text(),'جدید')]"))
         self.firstname_field_locator = ((By.ID,"FirstName"))
         self.lastname_field_locator = ((By.ID,"LastName"))
@@ -26,7 +27,16 @@ class UserManagementPage:
         self.active_fromdate_field_locator = ((By.ID,"txtFromDate"))
         self.active_todate_field_locator = ((By.ID,"txtToDate"))
         self.submit_button_locator = ((By.XPATH,"//button[@title='توجه']"))
+        
+        self.error_message_locator = (By.CSS_SELECTOR,"#toast-container .toast-message div")
 
+
+    def is_user_created(self, name):
+        locator = (
+            By.XPATH,
+            f"(//td[@class='ng-binding'][normalize-space()='{name}'])[1]"
+        )
+        return self.is_visible(locator)
 
 
     def open_new_user_form(self):
@@ -131,9 +141,8 @@ class UserManagementPage:
         self.enter_active_todate(active_todate)
         self.submit_form()
 
+        if error := self.get_error_message(self.error_message_locator, timeout=2):
+            return False, error
+        return self.is_user_created(personelli), None
 
-    def is_user_created(self,name):
-        return WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, f"(//td[@class='ng-binding'][normalize-space()='{name}'])[1]"))
-        ).is_displayed()
         
