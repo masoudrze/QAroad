@@ -28,13 +28,15 @@ class UserManagementPage(BasePage):
         self.active_todate_field_locator = ((By.ID,"txtToDate"))
         self.submit_button_locator = ((By.XPATH,"//button[@title='توجه']"))
         
-        self.error_message_locator = (By.CSS_SELECTOR,"#toast-container .toast-message div")
+        self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")
 
 
     def is_user_created(self, name):
         locator = (
             By.XPATH,
-            f"(//td[@class='ng-binding'][normalize-space()='{name}'])[1]"
+            f"(//td[normalize-space()='{name}'])[1]"
+
+            
         )
         return self.is_visible(locator)
 
@@ -143,6 +145,6 @@ class UserManagementPage(BasePage):
 
         if error := self.get_error_message(self.error_message_locator, timeout=2):
             return False, error
-        return self.is_user_created(personelli), None
+        return self.is_user_created(username), None
 
         

@@ -12,7 +12,7 @@ class GroupManagementPage(BasePage):
         self.MinIncreaseCredit_field_locator = ((By.ID,"MinIncreaseCredit"))
         self.MaxIncreaseCredit_field_locator = ((By.ID,"MaxIncreaseCredit"))
         self.submit_button_locator = ((By.XPATH,"(//button[contains(text(),'ثبت')])[1]"))
-        self.error_message_locator = (By.CSS_SELECTOR,"#toast-container .toast-message div")
+        self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")
 
 
     def is_group_created(self, name):

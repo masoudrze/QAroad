@@ -13,7 +13,7 @@ class FoodManagementPage(BasePage):
         self.name_field_locator = ((By.ID,"Foodname"))
         self.foodtype_field_locator = ((By.XPATH, '//*[@id="ListFoodTypes"]/select'))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
-        self.error_message_locator = (By.CSS_SELECTOR,"#toast-container .toast-message div")
+        self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")
 
 
 

@@ -16,6 +16,7 @@ class FoodPriceManagementPage(BasePage):
         self.rozforoosh_price_field_locator = ((By.ID,"RozForoshPrice"))
         self.bireserve_price_field_locator = ((By.ID,"BiReservePrice"))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
+        self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")
 
 
     def is_foodprice_created(self, name):

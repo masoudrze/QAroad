@@ -13,7 +13,7 @@ class SelfManagementPage(BasePage):
         self.name_field_locator = ((By.ID,"Selfname"))
         self.capacity_field_locator = ((By.ID,"Capacity"))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
-        self.error_message_locator = (By.CSS_SELECTOR,"#toast-container .toast-message div")
+        self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")
 
 
     def is_self_created(self, name):

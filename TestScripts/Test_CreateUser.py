@@ -1,8 +1,4 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
-from Components.Main_Menu import SideMenu
 from PageObjects.Create_User_POM import UserManagementPage
 from Helpers.data_loader import DataLoader
 
@@ -13,9 +9,11 @@ def test_create_new_user(driver):
     user_data = DataLoader.load_user("default")
 
     login_page.login(**DataLoader.load_login("admin_pass"))
-    
-    user_management_page.create_user(**DataLoader.load_user("default"))
-    
-    assert user_management_page.is_user_created(user_data["name"]),"Create group should be successful but it is not"
+    success, error = user_management_page.create_user(**DataLoader.load_user("default"))
+    assert success, (
+        f"Create food failed. Server message: {error}"
+        if error
+        else "Create food should be successful but it was not."
+    )
 
    

@@ -12,7 +12,7 @@ class MealManagementPage(BasePage):
         self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
         self.name_field_locator = ((By.ID,"txtMealName"))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
-        self.error_message_locator = (By.CSS_SELECTOR,"#toast-container .toast-message div")
+        self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")
 
 
     def is_meal_created(self, name):
