@@ -6,7 +6,6 @@ from Helpers.data_loader import DataLoader
 def test_create_new_user(driver):
     login_page = LoginPage(driver)
     user_management_page = UserManagementPage(driver)
-    user_data = DataLoader.load_user("default")
 
     login_page.login(**DataLoader.load_login("admin_pass"))
     success, error = user_management_page.create_user(**DataLoader.load_user("default"))

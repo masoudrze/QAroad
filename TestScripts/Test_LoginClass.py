@@ -1,6 +1,3 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.UserIndex_Nav_POM import UserIndexNav
 from Helpers.data_loader import DataLoader

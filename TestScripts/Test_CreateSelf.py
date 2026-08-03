@@ -1,8 +1,4 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from PageObjects.LoginPage_POM import LoginPage
-from Components.Main_Menu import SideMenu
 from PageObjects.Create_Self_POM import SelfManagementPage
 from Helpers.data_loader import DataLoader
 

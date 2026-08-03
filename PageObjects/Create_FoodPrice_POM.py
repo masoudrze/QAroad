@@ -5,8 +5,6 @@ from Components.Main_Menu import SideMenu
 from Components.Base_page import BasePage
 from Components.Group_selection import GroupSelection
 
-import time
-
 
 class FoodPriceManagementPage(BasePage):
     def __init__(self,driver):
@@ -108,7 +106,6 @@ class FoodPriceManagementPage(BasePage):
         self.select_meal(meal_name)
         self.select_self(self_name)
         self.submit_form()
-        time.sleep(5)
         if error := self.get_error_message(self.error_message_locator, timeout=2):
             return False, error
         return self.is_foodprice_created(name), None
