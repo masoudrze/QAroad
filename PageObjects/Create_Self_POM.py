@@ -50,6 +50,7 @@ class SelfManagementPage(BasePage):
 
 
     def create_self(self,name,capacity):
+        self.open_new_self_form()
         self.enter_name(name)
         self.enter_capacity(capacity)
         self.submit_form()

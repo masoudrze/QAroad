@@ -1,15 +1,18 @@
 {
     "default": {
-        "name": "قرمه سبزی",
+        "group_name": "دانشجویان",
+        "name": "لوبیا پلو",
         "free_price": "1500000",
         "yarane_price" : "500000",
         "rozforoosh_price" : "1500000",
         "bireserve_price" : "1500000",
-        "meal_name" : "ناهار"
+        "meal_name" : "مکمل",
+        "self_name" : "سالن"
     },
 
 
     "duplicate_foodprice": {
+        "group_name": "دانشجویان",
         "name": "قرمه سبزی",
         "free_price": "1500000",
         "yarane_price" : "500000",
@@ -21,6 +24,7 @@
     },
 
     "long_name": {
+        "group_name": "دانشجویان",
         "name": "قرمه سبزی",
         "free_price": "1500000",
         "yarane_price" : "500000",
@@ -30,6 +34,7 @@
     },
 
     "empty_name": {
+        "group_name": "دانشجویان",
         "name": "قرمه سبزی",
         "free_price": "1500000",
         "yarane_price" : "500000",
