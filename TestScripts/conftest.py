@@ -12,7 +12,7 @@ def driver():
     driver = webdriver.Chrome(service=service)
 
     driver.maximize_window()
-    driver.get("http://localhost/")
+    driver.get("http://192.168.101.117/")
     driver.implicitly_wait(10)
 
     yield driver
