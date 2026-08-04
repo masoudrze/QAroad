@@ -27,7 +27,11 @@ class FoodManagementPage(BasePage):
 
     def open_new_food_form(self):
         side_menu = SideMenu(self.driver)
-        side_menu.navigate_to_food_page()
+        side_menu.navigate(
+        side_menu.Definitions_feeding_locator,
+        side_menu.Definitions_feeding_food_locator
+        )
+
         wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.visibility_of_element_located(self.new_button_locator)

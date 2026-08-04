@@ -26,7 +26,10 @@ class SelfManagementPage(BasePage):
 
     def open_new_self_form(self):
         side_menu = SideMenu(self.driver)
-        side_menu.navigate_to_self_page()
+        side_menu.navigate(
+        side_menu.Definitions_feeding_locator,
+        side_menu.Definitions_feeding_self_locator
+        )
         wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.visibility_of_element_located(self.add_new_button_locator)

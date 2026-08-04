@@ -43,7 +43,10 @@ class UserManagementPage(BasePage):
 
     def open_new_user_form(self):
         side_menu = SideMenu(self.driver)
-        side_menu.navigate_to_users_page()
+        side_menu.navigate(
+        side_menu.Definitions_base_info_locator,
+        side_menu.Definitions_base_info_users_locator
+        )
         wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.element_to_be_clickable(self.new_button_locator)

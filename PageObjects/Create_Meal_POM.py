@@ -24,7 +24,10 @@ class MealManagementPage(BasePage):
 
     def open_new_meal_form(self):
         side_menu = SideMenu(self.driver)
-        side_menu.navigate_to_meal_page()
+        side_menu.navigate(
+        side_menu.Definitions_feeding_locator,
+        side_menu.Definitions_feeding_meal_locator
+        )
         wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.element_to_be_clickable(self.new_button_locator)

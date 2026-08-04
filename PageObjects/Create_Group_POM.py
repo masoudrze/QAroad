@@ -25,7 +25,10 @@ class GroupManagementPage(BasePage):
 
     def open_new_group_form(self):
         side_menu = SideMenu(self.driver)
-        side_menu.navigate_to_group_page()
+        side_menu.navigate(
+        side_menu.Definitions_base_info_locator,
+        side_menu.Definitions_base_info_group_locator
+        )
         wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.element_to_be_clickable(self.new_button_locator)

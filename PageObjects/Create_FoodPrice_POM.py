@@ -31,7 +31,10 @@ class FoodPriceManagementPage(BasePage):
         side_menu = SideMenu(self.driver)
         group_selection = GroupSelection(self.driver)
 
-        side_menu.navigate_to_foodprice_page()
+        side_menu.navigate(
+        side_menu.Definitions_feeding_locator,
+        side_menu.Definitions_feeding_foodprice_locator
+        )
         wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.visibility_of_element_located(self.new_button_locator)
