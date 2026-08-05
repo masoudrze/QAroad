@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -12,8 +11,8 @@ def driver():
     driver = webdriver.Chrome(service=service)
 
     driver.maximize_window()
-    driver.get("http://localhost/")
-    driver.implicitly_wait(10)
+    driver.get("http://192.168.101.117/")
+    #driver.implicitly_wait(10)
 
     yield driver
 
