@@ -6,9 +6,12 @@ from selenium.webdriver.support.select import Select
 from Components.Base_page import BasePage
 
 
-class FoodManagementPage(BasePage):
+class AddMealPlanPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
+        self.select_meal_locator=((By.CSS_SELECTOR, ".btn.ng-pristine.ng-valid.ng-not-empty.ng-touched"))
+        self.select_meal_list_locator =((By.XPATH, "ul[role='select'[contains(text(),'ثبت')]]"))
+
         self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
         self.name_field_locator = ((By.ID,"Foodname"))
         self.foodtype_field_locator = ((By.XPATH, '//*[@id="ListFoodTypes"]/select'))
@@ -25,26 +28,35 @@ class FoodManagementPage(BasePage):
         return self.is_visible(locator)
     
 
-    def open_new_food_form(self):
+    def open_new_meal_plan_form(self):
         side_menu = SideMenu(self.driver)
-        side_menu.navigate(
-        side_menu.Definitions_feeding_locator,
-        side_menu.Definitions_feeding_food_locator
+        side_menu.navigate2(
+        side_menu.GroupsSettings_locator,
+        side_menu.GroupsSettings_mealplan_locator
         )
 
         wait = WebDriverWait(self.driver, 5)
         wait.until(
-        EC.element_to_be_clickable(self.new_button_locator)
-        ).click()
+        EC.element_to_be_clickable(self.select_meal_locator)
+        )
+
+        
 
         wait.until(
         EC.visibility_of_element_located(self.submit_button_locator)
         )
 
 
-    def enter_name(self,name):
-        self.driver.find_element(*self.name_field_locator).send_keys(name)
+    def select_meal(self,meal):
+        self.driver.find_element(*self.select_meal_locator).click()
+        select = ((By.XPATH, f'//select[@ng-model="info.SelfType"]/following::a[normalize-space()="{meal}"][1]'))
 
+        wait = WebDriverWait(self.driver, 5)
+        wait.until(
+        EC.element_to_be_clickable(select)
+        ).click()
+
+    '''
     def enter_foodtype(self,foodtype):
         self.driver.find_element(*self.foodtype_field_locator)
         select = Select(self.driver.find_element(*self.foodtype_field_locator))
@@ -52,17 +64,17 @@ class FoodManagementPage(BasePage):
 
     def submit_form(self):
         self.driver.find_element(*self.submit_button_locator).click()
+    '''
 
 
-    def create_food(self,name,foodtype):
-        self.open_new_food_form()
-        self.enter_name(name)
-        self.enter_foodtype(foodtype)
-        self.submit_form()
+    def add_meal(self,meal):
+        self.open_new_meal_plan_form()
+        self.select_meal(meal)
+        
 
-        if error := self.get_error_message(self.error_message_locator, timeout=2):
-            return False, error
-        return self.is_food_created(name), None
+        #if error := self.get_error_message(self.error_message_locator, timeout=2):
+         #   return False, error
+        #return self.is_food_created(name), None
 
 
 

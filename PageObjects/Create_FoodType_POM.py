@@ -29,10 +29,9 @@ class FoodTypeManagementPage(BasePage):
         )
         wait = WebDriverWait(self.driver, 5)
         wait.until(
-        EC.visibility_of_element_located(self.new_button_locator)
-        )
+        EC.element_to_be_clickable(self.new_button_locator)
+        ).click()
 
-        self.driver.find_element(*self.new_button_locator).click()
         wait.until(
         EC.visibility_of_element_located(self.submit_button_locator)
         )

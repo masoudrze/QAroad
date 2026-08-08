@@ -46,6 +46,10 @@ class DataLoader:
     @staticmethod
     def load_foodprice(key):
         return DataLoader._load("FoodPrices.json", key)
+
+    @staticmethod
+    def load_addmeal(key):
+        return DataLoader._load("AddMeal.json", key)
     
 
  
