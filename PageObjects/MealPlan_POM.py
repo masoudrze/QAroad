@@ -9,7 +9,8 @@ from Components.Base_page import BasePage
 class AddMealPlanPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
-        self.select_meal_locator=((By.CSS_SELECTOR, ".btn.ng-pristine.ng-valid.ng-not-empty.ng-touched"))
+        self.select_meal_locator=((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/section[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/span[1]/button[1]"))
+        #self.select_meal_locator=((By.CSS_SELECTOR, ".btn.ng-pristine.ng-valid.ng-not-empty.ng-touched"))
         self.select_meal_list_locator =((By.XPATH, "ul[role='select'[contains(text(),'ثبت')]]"))
 
         self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
@@ -30,7 +31,8 @@ class AddMealPlanPage(BasePage):
 
     def open_new_meal_plan_form(self):
         side_menu = SideMenu(self.driver)
-        side_menu.navigate2(
+        side_menu.navigate(
+        side_menu.GroupsSettings_locator,
         side_menu.GroupsSettings_locator,
         side_menu.GroupsSettings_mealplan_locator
         )
@@ -49,7 +51,7 @@ class AddMealPlanPage(BasePage):
 
     def select_meal(self,meal):
         self.driver.find_element(*self.select_meal_locator).click()
-        select = ((By.XPATH, f'//select[@ng-model="info.SelfType"]/following::a[normalize-space()="{meal}"][1]'))
+        select = ((By.XPATH, f"//ul[@role='select']//a[span[normalize-space()='{meal}']]"))
 
         wait = WebDriverWait(self.driver, 5)
         wait.until(

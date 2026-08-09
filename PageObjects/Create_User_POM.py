@@ -44,6 +44,7 @@ class UserManagementPage(BasePage):
     def open_new_user_form(self):
         side_menu = SideMenu(self.driver)
         side_menu.navigate(
+        side_menu.Definitions_locator,
         side_menu.Definitions_base_info_locator,
         side_menu.Definitions_base_info_users_locator
         )

@@ -27,6 +27,7 @@ class SelfManagementPage(BasePage):
     def open_new_self_form(self):
         side_menu = SideMenu(self.driver)
         side_menu.navigate(
+        side_menu.Definitions_locator,
         side_menu.Definitions_feeding_locator,
         side_menu.Definitions_feeding_self_locator
         )

@@ -5,8 +5,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 class SideMenu:
     def __init__(self,driver):
         self.driver = driver
-        #self.show_tree_groups_button_locator = (((By.XPATH, '//a[span[normalize-space()="تعاریف"]]')))
-
         self.Definitions_locator = (((By.XPATH, '//a[span[normalize-space()="تعاریف"]]')))
         self.Definitions_base_info_locator = (((By.XPATH, '//a[span[normalize-space()="اطلاعات پایه"]]')))
         self.Definitions_base_info_group_locator = (((By.XPATH, '//a[normalize-space()="گروه"]')))
@@ -36,10 +34,10 @@ class SideMenu:
             self._click(parent_locator)
 
 
-    def navigate(self, section_locator, page_locator):
+    def navigate(self,root_locator, section_locator, page_locator):
 
         self._expand_if_needed(
-            self.Definitions_locator,
+            root_locator,
             section_locator
         )
 
@@ -52,25 +50,6 @@ class SideMenu:
 
         self.driver.execute_script("window.scrollTo(0,0)")
 
-        #/////////////////////////////////////////////////////
-
-
-
-    def navigate2(self, section_locator, page_locator):
-
-        self._expand_if_needed(
-            self.GroupsSettings_locator,
-            section_locator
-        )
-
-        self._expand_if_needed(
-            section_locator,
-            page_locator
-        )
-
-        self._click(page_locator)
-
-        self.driver.execute_script("window.scrollTo(0,0)")
 
 
     

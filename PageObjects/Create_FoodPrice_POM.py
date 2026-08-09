@@ -32,6 +32,7 @@ class FoodPriceManagementPage(BasePage):
         group_selection = GroupSelection(self.driver)
 
         side_menu.navigate(
+        side_menu.Definitions_locator,
         side_menu.Definitions_feeding_locator,
         side_menu.Definitions_feeding_foodprice_locator
         )
