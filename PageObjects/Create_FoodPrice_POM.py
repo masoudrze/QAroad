@@ -75,40 +75,48 @@ class FoodPriceManagementPage(BasePage):
     def enter_bireserve_price(self,bireserve_price):
         self.driver.find_element(*self.bireserve_price_field_locator).send_keys(bireserve_price)
 
-    def select_meal(self, meal_name):
+    def select_meal(self, meal_names):
         wait = WebDriverWait(self.driver, 5)
-        select_meal_locator = (
-        By.XPATH,
-        f"//span[@data-role='display' and normalize-space()='{meal_name}']/preceding-sibling::span[@data-role='checkbox']//label"
-        )
-        wait.until(
-            EC.element_to_be_clickable(select_meal_locator)
-        ).click()
 
-    def select_self(self, self_name):
+        meal_name = [name.strip() for name in meal_names.split(",") if name.strip()]
+        for name in meal_name:
+
+            select_meal_locator = (
+            By.XPATH,
+            f"//span[@data-role='display' and normalize-space()='{name}']/preceding-sibling::span[@data-role='checkbox']//label"
+            )
+            wait.until(
+                EC.element_to_be_clickable(select_meal_locator)
+            ).click()
+
+    def select_self(self, self_names):
         wait = WebDriverWait(self.driver, 5)
-        select_self_locator = (
-        By.XPATH,
-        f"//span[@data-role='display' and normalize-space()='{self_name}']/preceding-sibling::span[@data-role='checkbox']//label"
-        )
-        wait.until(
-            EC.element_to_be_clickable(select_self_locator)
-        ).click()
+
+        self_name = [name.strip() for name in self_names.split(",") if name.strip()]
+        for name in self_name:
+
+            select_self_locator = (
+            By.XPATH,
+            f"//span[@data-role='display' and normalize-space()='{name}']/preceding-sibling::span[@data-role='checkbox']//label"
+            )
+            wait.until(
+                EC.element_to_be_clickable(select_self_locator)
+            ).click()
     
     def submit_form(self):
         self.driver.find_element(*self.submit_button_locator).click()
 
 
 
-    def create_new_foodprice(self,group_name,name,free_price,yarane_price,rozforoosh_price,bireserve_price,meal_name,self_name):
+    def create_new_foodprice(self,group_name,name,free_price,yarane_price,rozforoosh_price,bireserve_price,meal_names,self_names):
         self.open_new_foodprice_form(group_name)
         self.enter_name(name)
         self.enter_free_price(free_price)
         self.enter_yarane_price(yarane_price)
         self.enter_rozforoosh_price(rozforoosh_price)
         self.enter_bireserve_price(bireserve_price)
-        self.select_meal(meal_name)
-        self.select_self(self_name)
+        self.select_meal(meal_names)
+        self.select_self(self_names)
         self.submit_form()
         if error := self.get_error_message(self.error_message_locator, timeout=2):
             return False, error

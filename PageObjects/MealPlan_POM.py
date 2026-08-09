@@ -10,7 +10,7 @@ class AddMealPlanPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
         self.select_meal_locator=((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/section[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/span[1]/button[1]"))
-        #self.select_meal_locator=((By.CSS_SELECTOR, ".btn.ng-pristine.ng-valid.ng-not-empty.ng-touched"))
+        self.maxcount_meal_locator=((By.XPATH, "//input[@id='MaxCount']"))
         self.select_meal_list_locator =((By.XPATH, "ul[role='select'[contains(text(),'ثبت')]]"))
 
         self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
@@ -36,14 +36,10 @@ class AddMealPlanPage(BasePage):
         side_menu.GroupsSettings_locator,
         side_menu.GroupsSettings_mealplan_locator
         )
-
         wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.element_to_be_clickable(self.select_meal_locator)
         )
-
-        
-
         wait.until(
         EC.visibility_of_element_located(self.submit_button_locator)
         )
@@ -58,20 +54,14 @@ class AddMealPlanPage(BasePage):
         EC.element_to_be_clickable(select)
         ).click()
 
-    '''
-    def enter_foodtype(self,foodtype):
-        self.driver.find_element(*self.foodtype_field_locator)
-        select = Select(self.driver.find_element(*self.foodtype_field_locator))
-        select.select_by_visible_text(foodtype)
-
-    def submit_form(self):
-        self.driver.find_element(*self.submit_button_locator).click()
-    '''
+    def add_max_count(self,max):
+        self.maxcount_meal_locator.send_keys(max)
 
 
-    def add_meal(self,meal):
+    def add_meal(self,meal,max):
         self.open_new_meal_plan_form()
         self.select_meal(meal)
+        self.add_max_count(max)
         
 
         #if error := self.get_error_message(self.error_message_locator, timeout=2):
