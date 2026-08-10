@@ -25,4 +25,4 @@ def test_create_duplicate_group(driver):
 
 
     assert not success
-    assert error == 'گروه با این نام وجود دارد.'
+    assert error == 'گروه انتخاب شده تکراری است'
