@@ -18,4 +18,16 @@ def test_create_new_food(driver):
 
 
 
+def test_create_duplicate_food(driver):
+    login_page = LoginPage(driver)
+    food_management_page = FoodManagementPage(driver)
+    login_page.login(**DataLoader.load_login("admin_pass"))
+
+    success, error = food_management_page.create_food(**DataLoader.load_food("duplicate"))
+
+    assert not success
+    assert error == 'غذا با این نام وجود دارد.'
+
+
+
 

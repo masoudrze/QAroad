@@ -5,9 +5,9 @@
     },
 
 
-    "duplicate_food": {
-        "name": "قرمه سبزی",
-        "foodtype": "غذا"
+    "duplicate": {
+        "name": "نوشابه",
+        "foodtype": "نوشیدنی"
     },
 
     "long_name": {

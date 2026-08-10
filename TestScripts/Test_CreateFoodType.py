@@ -16,3 +16,16 @@ def test_create_new_foodtype(driver):
         if error
         else "Create food should be successful but it was not."
     )
+
+
+
+def test_create_duplicate_foodtype(driver):
+    login_page = LoginPage(driver)
+    foodtype_management_page = FoodTypeManagementPage(driver)
+
+    login_page.login(**DataLoader.load_login("admin_pass"))
+
+    success, error = foodtype_management_page.create_foodtype(**DataLoader.load_foodtype("duplicate"))
+
+    assert not success
+    assert error == 'نوع غذا با این نام وجود دارد.'

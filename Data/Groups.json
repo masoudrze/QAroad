@@ -5,6 +5,12 @@
         "MaxIncreaseCredit": "1000000"
     },
 
+    "duplicate": {
+        "name": "دانشجویان",
+        "MinIncreaseCredit": "10000",
+        "MaxIncreaseCredit": "1000000"
+    },
+
     "long_name": {
         "name": "دانشجویان ورودی سال 1405 پزشکی بخش داروسازی",
         "MinIncreaseCredit": "10000",

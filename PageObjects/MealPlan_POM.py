@@ -129,9 +129,18 @@ class AddMealPlanPage(BasePage):
         self.submit_form()
         
 
-        if error := self.get_error_message(self.error_message_locator, timeout=2):
-            return False, error
-        return self.is_meal_added('ybh'), None
+        error = self.get_error_message(self.error_message_locator, timeout=2)
+
+        if error:
+            return {
+                "success": False,
+                "error": error
+            }
+
+        return {
+            "success": self.is_meal_added(foodname),
+            "error": None
+        }
 
 
 

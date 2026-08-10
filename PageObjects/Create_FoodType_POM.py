@@ -51,6 +51,15 @@ class FoodTypeManagementPage(BasePage):
         self.enter_name(name)
         self.submit_form()
 
-        if error := self.get_error_message(self.error_message_locator, timeout=2):
-            return False, error
-        return self.is_foodtype_created(name), None
+        error = self.get_error_message(self.error_message_locator, timeout=2)
+
+        if error:
+            return {
+                "success": False,
+                "error": error
+            }
+
+        return {
+            "success": self.is_foodtype_created(name),
+            "error": None
+        }

@@ -16,3 +16,16 @@ def test_create_new_meal(driver):
         if error
         else "Create meal should be successful but it was not."
     )
+
+
+def test_create_duplicate_meal(driver):
+    login_page = LoginPage(driver)
+    meal_management_page = MealManagementPage(driver)
+
+    login_page.login(**DataLoader.load_login("admin_pass"))
+
+    success, error = meal_management_page.create_meal(**DataLoader.load_meal("duplicate"))
+
+
+    assert not success
+    assert error == 'وعده با این نام وجود دارد.'

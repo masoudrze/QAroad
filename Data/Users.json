@@ -18,6 +18,27 @@
         "active_todate": "1408/04/01"
     },
 
+
+    "duplicate": {
+        "firstname": "عسل",
+        "lastname": "عسلی",
+        "meli": "1111111112",
+        "sex": "مرد",
+        "barcode": "2",
+        "cardnumber": "2",
+        "expiredate": "1408/04/01",
+        "username": "user2",
+        "password": "Aa@12345",
+        "repassword": "Aa@12345",
+        "role": "کاربر",
+        "passwordfaramooshi": "123",
+        "personelli": "2",
+        "group": "دانشجویان",
+        "active_fromdate": "1404/04/01",
+        "active_todate": "1408/04/01"
+    },
+
+
     "long_name": {
         "firstname": "امین",
         "lastname": "امینی",

@@ -11,16 +11,15 @@
     },
 
 
-    "duplicate_foodprice": {
+    "duplicate": {
         "group_name": "دانشجویان",
-        "name": "قرمه سبزی",
+        "name": "سالاد سزار",
         "free_price": "1500000",
         "yarane_price" : "500000",
         "rozforoosh_price" : "1500000",
         "bireserve_price" : "1500000",
-        "meal_name" : "ناهار"
-
-   
+        "meal_names" : "ناهار",
+        "self_names" : "سلف بالا"
     },
 
     "long_name": {

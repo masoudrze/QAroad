@@ -15,4 +15,16 @@ def test_create_new_user(driver):
         else "Create food should be successful but it was not."
     )
 
+
+def test_create_duplicate_user(driver):
+    login_page = LoginPage(driver)
+    user_management_page = UserManagementPage(driver)
+
+    login_page.login(**DataLoader.load_login("admin_pass"))
+    success, error = user_management_page.create_user(**DataLoader.load_user("duplicate"))
+
+
+    assert not success
+    assert error == 'کاربر تکراری است'
+
    
