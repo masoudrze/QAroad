@@ -4,7 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from Components.Main_Menu import SideMenu
 from selenium.webdriver.support.select import Select
 from Components.Base_page import BasePage
-import time
 
 
 class AddMealPlanPage(BasePage):
@@ -24,8 +23,7 @@ class AddMealPlanPage(BasePage):
             By.XPATH,
             f"(//td[contains(text(),'{name}')])[1]"
         )
-        #return self.is_visible(locator)
-        return True
+        return self.is_visible(locator)
     
 
     def open_new_meal_plan_form(self):
@@ -112,15 +110,30 @@ class AddMealPlanPage(BasePage):
         self.open_new_meal_plan_form()
         self.select_meal(meal)
         self.enter_foodname(foodname)
-        time.sleep(5)
         self.add_max_count(max)
         self.select_week_day(weekdays)
         self.select_selfs(selfs)
         self.driver.find_element(*self.add_temp_meal_locator).click()
 
 
+        error = self.get_error_message(self.error_message_locator, timeout=2)
+
+        if error:
+            return {
+                "success": False,
+                "error": error
+            }
+
+        return {
+            "success": self.is_meal_added(foodname),
+            "error": None
+        }
+
+
     def submit_form(self):
         self.driver.find_element(*self.submit_button_locator).click()
+
+        
 
 
     def add_meal(self,meal,foodname,max,weekdays,selfs):

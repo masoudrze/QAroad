@@ -102,7 +102,7 @@ class UserManagementPage(BasePage):
         self.driver.find_element(*self.personelli_field_locator).send_keys(personelli)
 
     def enter_group(self,group):
-        wait = WebDriverWait(self.driver, 100)
+        wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.element_to_be_clickable(self.group_field_locator)
             ).click()

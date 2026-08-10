@@ -52,7 +52,7 @@ class FoodPriceManagementPage(BasePage):
 
     def enter_name(self,name):
         print(self.driver.find_elements(*self.name_field_locator))
-        wait = WebDriverWait(self.driver, 100)
+        wait = WebDriverWait(self.driver, 5)
         wait.until(
         EC.element_to_be_clickable(self.name_field_locator)
             ).click()
