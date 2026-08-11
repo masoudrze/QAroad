@@ -27,7 +27,7 @@ Desktop.ini
 githubtoken.txt
 
 # Ignore everything inside screenshots
-screenshots/*
+Screenshots/*
 
 # But keep this file
-!screenshots/.gitkeep
+!Screenshots/.gitkeep

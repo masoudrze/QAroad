@@ -55,5 +55,12 @@ class MealManagementPage(BasePage):
         error = self.get_error_message(self.error_message_locator, timeout=2)
 
         if error:
-            return False, error 
-        return self.is_meal_created(name), None
+            return {
+                "success": False,
+                "error": error
+            }
+
+        return {
+            "success": self.is_meal_created(name),
+            "error": None
+        }
