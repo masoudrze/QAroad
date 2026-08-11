@@ -1,6 +1,14 @@
 import json
 from pathlib import Path
 
+from Helpers.config import (
+    ADMIN_USERNAME,
+    ADMIN_PASSWORD,
+    USER_USERNAME,
+    USER_PASSWORD,
+    FAIL_PASSWORD
+)
+
 
 class DataLoader:
     @staticmethod
@@ -16,7 +24,25 @@ class DataLoader:
 
     @staticmethod
     def load_login(key):
-        return DataLoader._load("Login.json", key)
+        credentials = {
+            "admin_pass":{
+                "username":ADMIN_USERNAME,
+                "password":ADMIN_PASSWORD,
+            },
+            "user_pass":{
+                "username":USER_USERNAME,
+                "password":USER_PASSWORD,
+            },
+            "admin_fail":{
+                "username":ADMIN_USERNAME,
+                "password":FAIL_PASSWORD,
+            },
+            "admin_fail":{
+                "username":ADMIN_USERNAME,
+                "password":FAIL_PASSWORD,
+            },
+        }
+        return credentials[key]
 
     @staticmethod
     def load_group(key):

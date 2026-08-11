@@ -4,6 +4,8 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
+from Helpers.config import BASE_URL
+
 
 @pytest.fixture(scope="function")
 def driver():
@@ -11,7 +13,7 @@ def driver():
     driver = webdriver.Chrome(service=service)
 
     driver.maximize_window()
-    driver.get("http://localhost/")
+    driver.get(BASE_URL)
 
     yield driver
 

@@ -31,3 +31,6 @@ Screenshots/*
 
 # But keep this file
 !Screenshots/.gitkeep
+
+# .env
+.env
