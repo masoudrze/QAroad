@@ -11,8 +11,7 @@ def driver():
     driver = webdriver.Chrome(service=service)
 
     driver.maximize_window()
-    driver.get("http://192.168.101.117/")
-    #driver.implicitly_wait(10)
+    driver.get("http://localhost/")
 
     yield driver
 
@@ -24,8 +23,8 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     report = outcome.get_result()
 
-    # فقط اگر مرحله اجرای تست Fail شود
-    if report.when == "call" and report.failed:
+    
+    if report.when == call and report.failed:
 
         driver = item.funcargs.get("driver")
 
