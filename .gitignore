@@ -1,6 +1,7 @@
 # Virtual Environment
 .QAvenv/
 venv/
+.venv/
 env/
 
 # Python cache

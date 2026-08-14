@@ -37,8 +37,8 @@ class DataLoader:
                 "username":ADMIN_USERNAME,
                 "password":FAIL_PASSWORD,
             },
-            "admin_fail":{
-                "username":ADMIN_USERNAME,
+            "user_fail":{
+                "username":USER_USERNAME,
                 "password":FAIL_PASSWORD,
             },
         }

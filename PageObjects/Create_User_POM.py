@@ -150,14 +150,8 @@ class UserManagementPage(BasePage):
         error = self.get_error_message(self.error_message_locator, timeout=2)
 
         if error:
-            return {
-                "success": False,
-                "error": error
-            }
+            return False, error
 
-        return {
-            "success": self.is_user_created(username),
-            "error": None
-        }
+        return self.is_user_created(username), None
 
         
