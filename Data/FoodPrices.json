@@ -13,13 +13,13 @@
 
     "duplicate": {
         "group_name": "دانشجویان",
-        "name": "سالاد سزار",
+        "name": "نوشابه",
         "free_price": "1500000",
         "yarane_price" : "500000",
         "rozforoosh_price" : "1500000",
         "bireserve_price" : "1500000",
         "meal_names" : "ناهار",
-        "self_names" : "سلف بالا"
+        "self_names" : "سالن"
     },
 
     "long_name": {

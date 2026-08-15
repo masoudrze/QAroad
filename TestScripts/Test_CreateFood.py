@@ -26,7 +26,7 @@ def test_create_duplicate_food(driver):
     success, error = food_management_page.create_food(**DataLoader.load_food("duplicate"))
 
     assert not success
-    assert error == 'غذا با این نام وجود دارد.'
+    assert error == 'غذا تکراری است.'
 
 
 
