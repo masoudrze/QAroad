@@ -16,11 +16,23 @@ class AddMealPlanPage(BasePage):
         self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")
 
 
+    def is_temp_meal_added(self, name,weekdays):
+        locator = (
+            By.XPATH,
+            f"//tr[contains(@class,'unsavedrow')]//td[normalize-space()='{name}']"
+        )
+        weekday = weekdays[0]
+        locator_cal = ((By.XPATH,f"//li[.//label[contains(normalize-space(.), '{weekday}')]]"))
+
+        self.driver.find_element(locator_cal).click()
+        #locator_cal.click()
+        return self.is_visible(locator)
+
 
     def is_meal_added(self, name):
         locator = (
             By.XPATH,
-            f"(//td[contains(text(),'{name}')])[1]"
+            f"//tr[not(contains(@class,'unsavedrow'))]//td[normalize-space()='{name}']"
         )
         return self.is_visible(locator)
     
@@ -108,11 +120,21 @@ class AddMealPlanPage(BasePage):
     def add_temp_meal(self,meal,foodname,max,weekdays,selfs):
         self.open_new_meal_plan_form()
         self.select_meal(meal)
+        print(1)
         self.enter_foodname(foodname)
+        print(2)
         self.add_max_count(max)
+        print(3)
         self.select_week_day(weekdays)
+        print(4)
         self.select_selfs(selfs)
+        print(5)
+
+        self.driver.execute_script("window.scrollTo(0,45)")
+
         self.driver.find_element(*self.add_temp_meal_locator).click()
+
+        
 
 
         error = self.get_error_message(self.error_message_locator, timeout=2)
@@ -120,7 +142,7 @@ class AddMealPlanPage(BasePage):
         if error:
             return False, error
 
-        return self.is_meal_added(foodname), None
+        return self.is_temp_meal_added(foodname,weekdays), None
 
 
     def submit_form(self):
