@@ -7,7 +7,7 @@ from Components.Base_page import BasePage
 class GroupManagementPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
-        self.new_button_locator=((By.XPATH, "//a[@title='گروه جدید']"))
+        self.new_button_locator=((By.XPATH, "//div[@ng-controller='ListGroupsCtrl']//a[@title='گروه جدید']"))
         self.name_field_locator = ((By.ID,"Groupname"))
         self.MinIncreaseCredit_field_locator = ((By.ID,"MinIncreaseCredit"))
         self.MaxIncreaseCredit_field_locator = ((By.ID,"MaxIncreaseCredit"))

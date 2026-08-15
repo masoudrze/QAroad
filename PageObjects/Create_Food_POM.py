@@ -9,7 +9,7 @@ from Components.Base_page import BasePage
 class FoodManagementPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
-        self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
+        self.new_button_locator=((By.XPATH, "//div[@ng-controller='ListFoodsCtrl']//a[@title='غذای جدید']"))
         self.name_field_locator = ((By.ID,"Foodname"))
         self.foodtype_field_locator = ((By.XPATH, '//*[@id="ListFoodTypes"]/select'))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))

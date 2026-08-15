@@ -9,7 +9,7 @@ from Components.Group_selection import GroupSelection
 class FoodPriceManagementPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
-        self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
+        self.new_button_locator=((By.XPATH, "//div[@ng-controller='ListGroupFoodPriceCtrl']//a[@title='قیمت جدید']"))
         self.name_field_locator = ((By.XPATH,"/html[1]/body[1]/div[3]/div[1]/section[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/span[1]/span[1]/span[1]/span[1]"))
         self.free_price_field_locator = ((By.ID,"FreePrice"))
         self.yarane_price_field_locator = ((By.ID,"YaranePrice"))
