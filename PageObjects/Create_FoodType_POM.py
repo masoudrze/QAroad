@@ -7,7 +7,7 @@ from Components.Base_page import BasePage
 class FoodTypeManagementPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
-        self.new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
+        self.new_button_locator=((By.XPATH, "//div[@ng-controller='ListFoodTypesCtrl']//a[@title='نوع غذای جدید']"))
         self.name_field_locator = ((By.ID,"FoodTypeName"))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
         self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")

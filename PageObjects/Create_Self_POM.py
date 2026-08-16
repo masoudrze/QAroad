@@ -9,7 +9,7 @@ from Components.Base_page import BasePage
 class SelfManagementPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
-        self.add_new_button_locator=((By.XPATH, "(//a[contains(text(),'جدید')])[1]"))
+        self.add_new_button_locator=((By.XPATH, "//div[@ng-controller='ListSelfsCtrl']//a[@title='سلف جدید']"))
         self.name_field_locator = ((By.ID,"Selfname"))
         self.capacity_field_locator = ((By.ID,"Capacity"))
         self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))

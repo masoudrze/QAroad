@@ -9,7 +9,7 @@ from selenium.webdriver.support.select import Select
 class UserManagementPage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
-        self.new_button_locator=((By.XPATH, "//a[contains(text(),'جدید')]"))
+        self.new_button_locator=((By.XPATH, "//div[@ng-controller='ListStudentCtrl']//a[@title='فرد جدید']"))
         self.firstname_field_locator = ((By.ID,"FirstName"))
         self.lastname_field_locator = ((By.ID,"LastName"))
         self.meli_field_locator = ((By.ID,"Meli"))
