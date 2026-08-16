@@ -3,14 +3,14 @@
         "meal": "عصرانه",
         "foodname":"نوشابه",
         "max": "0",
-        "weekdays": "سه شنبه, جمعه, یک شنبه",
-        "selfs":"سالن"
+        "weekdays": "سه شنبه,جمعه,یکشنبه",
+        "selfnames":"سالن"
     },
     "duplicate": {
         "meal": "عصرانه",
         "foodname":"نوشابه",
         "max": "0",
-        "weekdays": "سه شنبه, جمعه, یک شنبه",
-        "selfs":"سالن"
+        "weekdays": "سه شنبه,جمعه,یکشنبه",
+        "selfnames":"سالن"
     }
 }
