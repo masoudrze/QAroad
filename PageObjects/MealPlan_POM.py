@@ -30,11 +30,18 @@ class AddMealPlanPage(BasePage):
         return self.is_visible(locator)
 
 
-    def is_meal_added(self, name):
+    def is_meal_added(self, name,weekdays):
+        wait = WebDriverWait(self.driver, 5)
         locator = (
-            By.XPATH,
-            f"//tr[not(contains(@class,'unsavedrow'))]//td[normalize-space()='{name}']"
+        By.XPATH,
+        f"//tr[not(contains(@class,'unsavedrow'))]//td[normalize-space()='{name}']"
         )
+        weekday = [day.strip() for day in weekdays.split(",") if day.strip()]
+        for day in weekday:
+            wait.until(EC.presence_of_element_located(
+                (By.XPATH,f"//li[.//label[contains(normalize-space(.), '{day}')]]"))).click()
+            
+
         return self.is_visible(locator)
     
 
@@ -160,23 +167,22 @@ class AddMealPlanPage(BasePage):
 
 
     def add_meal(self,meal,foodname,max,weekdays,selfnames):
-
-        self.add_temp_meal(meal,foodname,max,weekdays,selfnames)
+        self.open_new_meal_plan_form()
+        self.select_meal(meal)
+        self.enter_foodname(foodname)
+        self.add_max_count(max)
+        self.select_week_day(weekdays)
+        self.select_selfs(selfnames)
+        self.driver.execute_script("window.scrollTo(0,45)")
+        self.driver.find_element(*self.add_temp_meal_locator).click()
         self.submit_form()
-        
 
         error = self.get_error_message(self.error_message_locator, timeout=2)
 
         if error:
-            return {
-                "success": False,
-                "error": error
-            }
+            return False, error
 
-        return {
-            "success": self.is_meal_added(foodname),
-            "error": None
-        }
+        return self.is_meal_added(foodname,weekdays), None
 
 
 
