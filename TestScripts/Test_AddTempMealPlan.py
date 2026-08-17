@@ -1,9 +1,10 @@
+import pytest
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.MealPlan_POM import AddMealPlanPage
 from Helpers.data_loader import DataLoader
 
 
-
+@pytest.mark.smoke
 def test_add_new_temp_meal(driver):
     login_page = LoginPage(driver)
     add_meal_plan_page = AddMealPlanPage(driver)
@@ -18,6 +19,7 @@ def test_add_new_temp_meal(driver):
     )
     
 
+@pytest.mark.negative
 def test_add_duplicate_temp_meal(driver):
     login_page = LoginPage(driver)
     add_meal_plan_page = AddMealPlanPage(driver)
@@ -26,8 +28,6 @@ def test_add_duplicate_temp_meal(driver):
 
     assert not success
     assert error == 'غذای انتخاب شده قبلا در این وعده و در همین سلف ها ثبت شده است.'
-
-    #assert error == 'برنامه غذایی با موفقیت ثبت شد.'
 
 
 

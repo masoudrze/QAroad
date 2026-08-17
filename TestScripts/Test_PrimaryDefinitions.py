@@ -1,3 +1,4 @@
+import pytest
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.Create_Group_POM import GroupManagementPage
 from PageObjects.Create_User_POM import UserManagementPage
@@ -9,6 +10,7 @@ from PageObjects.Create_FoodPrice_POM import FoodPriceManagementPage
 from Helpers.data_loader import DataLoader
 
 
+@pytest.mark.smoke
 def test_primary_definitions(driver):
     login_page = LoginPage(driver)
     group_management_page = GroupManagementPage(driver)

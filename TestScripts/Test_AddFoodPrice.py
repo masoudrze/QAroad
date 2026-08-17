@@ -1,8 +1,10 @@
+import pytest
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.Create_FoodPrice_POM import FoodPriceManagementPage
 from Helpers.data_loader import DataLoader
 
 
+@pytest.mark.smoke
 def test_add_new_foodprice(driver):
     login_page = LoginPage(driver)
     food_price_management_page = FoodPriceManagementPage(driver)
@@ -18,7 +20,7 @@ def test_add_new_foodprice(driver):
     )
 
 
-
+@pytest.mark.negative
 def test_add_duplicate_foodprice(driver):
     login_page = LoginPage(driver)
     food_price_management_page = FoodPriceManagementPage(driver)

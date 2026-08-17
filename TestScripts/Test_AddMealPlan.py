@@ -1,9 +1,10 @@
+import pytest
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.MealPlan_POM import AddMealPlanPage
 from Helpers.data_loader import DataLoader
 
 
-
+@pytest.mark.smoke
 def test_add_new_meal(driver):
     login_page = LoginPage(driver)
     add_meal_plan_page = AddMealPlanPage(driver)

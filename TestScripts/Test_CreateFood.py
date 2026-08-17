@@ -1,8 +1,11 @@
+import pytest
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.Create_Food_POM import FoodManagementPage
 from Helpers.data_loader import DataLoader
 
 
+
+@pytest.mark.smoke
 def test_create_new_food(driver):
     login_page = LoginPage(driver)
     food_management_page = FoodManagementPage(driver)
@@ -17,7 +20,7 @@ def test_create_new_food(driver):
     )
 
 
-
+@pytest.mark.negative
 def test_create_duplicate_food(driver):
     login_page = LoginPage(driver)
     food_management_page = FoodManagementPage(driver)

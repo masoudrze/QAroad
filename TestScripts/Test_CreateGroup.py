@@ -1,8 +1,10 @@
+import pytest
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.Create_Group_POM import GroupManagementPage
 from Helpers.data_loader import DataLoader
 
 
+@pytest.mark.smoke
 def test_create_new_group(driver):
     login_page = LoginPage(driver)
     group_management_page = GroupManagementPage(driver)
@@ -15,7 +17,7 @@ def test_create_new_group(driver):
         else "Create food should be successful but it was not."
     )
 
-
+@pytest.mark.negative
 def test_create_duplicate_group(driver):
     login_page = LoginPage(driver)
     group_management_page = GroupManagementPage(driver)

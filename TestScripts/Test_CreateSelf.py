@@ -1,8 +1,9 @@
+import pytest
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.Create_Self_POM import SelfManagementPage
 from Helpers.data_loader import DataLoader
 
-
+@pytest.mark.smoke
 def test_create_new_self(driver):
     login_page = LoginPage(driver)
     self_management_page = SelfManagementPage(driver)
@@ -18,6 +19,7 @@ def test_create_new_self(driver):
     )
 
 
+@pytest.mark.negative
 def test_create_duplicate_self(driver):
     login_page = LoginPage(driver)
     self_management_page = SelfManagementPage(driver)
