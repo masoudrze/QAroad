@@ -131,26 +131,36 @@ Install all required Python packages from `requirements.txt`:
 pip install -r requirements.txt
 ```
 
+## 5. Configure the Test Environment
+
+Create a local `.env` file from the committed template:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Set the URL and test-account credentials in `.env`. The file also controls browser execution:
+
+```env
+BROWSER=chrome
+HEADLESS=false
+WINDOW_WIDTH=1920
+WINDOW_HEIGHT=1080
+```
+
+Supported values for `BROWSER` are `chrome` and `firefox`. Set `HEADLESS=true` to run without a visible browser window. This is useful for CI environments.
+
 ---
 
-# 🌐 ChromeDriver Setup
+# 🌐 WebDriver Setup
 
-This project uses Selenium WebDriver to automate Google Chrome.
+The framework uses Selenium Manager to discover or download a compatible browser driver when possible. If that is unavailable in your environment, set an explicit ChromeDriver path in `.env`:
 
-You must have a **ChromeDriver version compatible with your installed Google Chrome browser**.
+```env
+CHROMEDRIVER_PATH=chromedriver.exe
+```
 
-Download ChromeDriver from the official Chrome for Developers website:
-
-[ChromeDriver Downloads](https://developer.chrome.com/docs/chromedriver/downloads?utm_source=chatgpt.com)
-
-After downloading:
-
-1. Download the appropriate ChromeDriver version.
-2. Extract `chromedriver.exe`.
-3. Place it in the location configured by the project.
-4. Make sure the ChromeDriver version is compatible with your installed Chrome browser.
-
-> **Important:** An incompatible ChromeDriver version can prevent Selenium from starting the browser.
+For Firefox, make sure Firefox and GeckoDriver are available on the system path.
 
 ---
 
@@ -177,13 +187,19 @@ pytest -v
 Run a specific test file:
 
 ```bash
-pytest TestScripts/test_example.py
+pytest TestScripts/Test_LoginClass.py -v
 ```
 
 Run a specific test:
 
 ```bash
-pytest TestScripts/test_example.py::test_name
+pytest TestScripts/Test_LoginClass.py::test_valid_admin_login -v
+```
+
+Run the smoke suite in headless mode by setting `HEADLESS=true` in `.env`:
+
+```bash
+pytest -m smoke -v
 ```
 
 The project's `pytest.ini` file contains the Pytest configuration used by the framework.
