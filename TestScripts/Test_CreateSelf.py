@@ -1,7 +1,9 @@
 import pytest
-from PageObjects.LoginPage_POM import LoginPage
-from PageObjects.Create_Self_POM import SelfManagementPage
+
 from Helpers.data_loader import DataLoader
+from PageObjects.Create_Self_POM import SelfManagementPage
+from PageObjects.LoginPage_POM import LoginPage
+
 
 @pytest.mark.smoke
 def test_create_new_self(driver):

@@ -1,52 +1,48 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from Components.Main_Menu import SideMenu
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import WebDriverWait
+
 from Components.Base_page import BasePage
+from Components.Main_Menu import SideMenu
 
 
 class FoodManagementPage(BasePage):
-    def __init__(self,driver):
+    def __init__(self, driver):
         super().__init__(driver)
-        self.new_button_locator=((By.XPATH, "//div[@ng-controller='ListFoodsCtrl']//a[@title='غذای جدید']"))
-        self.name_field_locator = ((By.ID,"Foodname"))
-        self.foodtype_field_locator = ((By.XPATH, '//*[@id="ListFoodTypes"]/select'))
-        self.submit_button_locator = ((By.XPATH,"//button[contains(text(),'ثبت')]"))
-        self.error_message_locator = (By.CSS_SELECTOR, "#toast-container .toast-warning .toast-message div")
-
-
+        self.new_button_locator = (
+            By.XPATH,
+            "//div[@ng-controller='ListFoodsCtrl']//a[@title='غذای جدید']",
+        )
+        self.name_field_locator = (By.ID, "Foodname")
+        self.foodtype_field_locator = (By.XPATH, '//*[@id="ListFoodTypes"]/select')
+        self.submit_button_locator = (By.XPATH, "//button[contains(text(),'ثبت')]")
+        self.error_message_locator = (
+            By.CSS_SELECTOR,
+            "#toast-container .toast-warning .toast-message div",
+        )
 
     def is_food_created(self, name):
-        locator = (
-            By.XPATH,
-            f"(//td[contains(text(),'{name}')])[1]"
-        )
+        locator = (By.XPATH, f"(//td[contains(text(),'{name}')])[1]")
         return self.is_visible(locator)
-    
 
     def open_new_food_form(self):
         side_menu = SideMenu(self.driver)
         side_menu.navigate(
-        side_menu.Definitions_locator,
-        side_menu.Definitions_feeding_locator,
-        side_menu.Definitions_feeding_food_locator
+            side_menu.Definitions_locator,
+            side_menu.Definitions_feeding_locator,
+            side_menu.Definitions_feeding_food_locator,
         )
 
         wait = WebDriverWait(self.driver, 5)
-        wait.until(
-        EC.element_to_be_clickable(self.new_button_locator)
-        ).click()
+        wait.until(EC.element_to_be_clickable(self.new_button_locator)).click()
 
-        wait.until(
-        EC.visibility_of_element_located(self.submit_button_locator)
-        )
+        wait.until(EC.visibility_of_element_located(self.submit_button_locator))
 
-
-    def enter_name(self,name):
+    def enter_name(self, name):
         self.driver.find_element(*self.name_field_locator).send_keys(name)
 
-    def enter_foodtype(self,foodtype):
+    def enter_foodtype(self, foodtype):
         self.driver.find_element(*self.foodtype_field_locator)
         select = Select(self.driver.find_element(*self.foodtype_field_locator))
         select.select_by_visible_text(foodtype)
@@ -54,8 +50,7 @@ class FoodManagementPage(BasePage):
     def submit_form(self):
         self.driver.find_element(*self.submit_button_locator).click()
 
-
-    def create_food(self,name,foodtype):
+    def create_food(self, name, foodtype):
         self.open_new_food_form()
         self.enter_name(name)
         self.enter_foodtype(foodtype)
@@ -67,10 +62,3 @@ class FoodManagementPage(BasePage):
             return False, error
 
         return self.is_food_created(name), None
-
-
-    
-
-
-
-

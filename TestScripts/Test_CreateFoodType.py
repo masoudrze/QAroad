@@ -1,7 +1,9 @@
 import pytest
-from PageObjects.LoginPage_POM import LoginPage
-from PageObjects.Create_FoodType_POM import FoodTypeManagementPage
+
 from Helpers.data_loader import DataLoader
+from PageObjects.Create_FoodType_POM import FoodTypeManagementPage
+from PageObjects.LoginPage_POM import LoginPage
+
 
 @pytest.mark.smoke
 def test_create_new_foodtype(driver):
@@ -10,7 +12,9 @@ def test_create_new_foodtype(driver):
 
     login_page.login(**DataLoader.load_login("admin_pass"))
 
-    success, error = foodtype_management_page.create_foodtype(**DataLoader.load_foodtype("default"))
+    success, error = foodtype_management_page.create_foodtype(
+        **DataLoader.load_foodtype("default")
+    )
 
     assert success, (
         f"Create food failed. Server message: {error}"
@@ -26,7 +30,9 @@ def test_create_duplicate_foodtype(driver):
 
     login_page.login(**DataLoader.load_login("admin_pass"))
 
-    success, error = foodtype_management_page.create_foodtype(**DataLoader.load_foodtype("duplicate"))
+    success, error = foodtype_management_page.create_foodtype(
+        **DataLoader.load_foodtype("duplicate")
+    )
 
     assert not success
-    assert error == 'غذا تکراری است.'
+    assert error == "غذا تکراری است."

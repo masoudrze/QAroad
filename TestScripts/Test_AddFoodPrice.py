@@ -1,7 +1,8 @@
 import pytest
-from PageObjects.LoginPage_POM import LoginPage
-from PageObjects.Create_FoodPrice_POM import FoodPriceManagementPage
+
 from Helpers.data_loader import DataLoader
+from PageObjects.Create_FoodPrice_POM import FoodPriceManagementPage
+from PageObjects.LoginPage_POM import LoginPage
 
 
 @pytest.mark.smoke
@@ -11,7 +12,9 @@ def test_add_new_foodprice(driver):
 
     login_page.login(**DataLoader.load_login("admin_pass"))
 
-    success, error = food_price_management_page.create_new_foodprice(**DataLoader.load_foodprice("default"))
+    success, error = food_price_management_page.create_new_foodprice(
+        **DataLoader.load_foodprice("default")
+    )
 
     assert success, (
         f"Adding food price failed. Server message: {error}"
@@ -27,8 +30,12 @@ def test_add_duplicate_foodprice(driver):
 
     login_page.login(**DataLoader.load_login("admin_pass"))
 
-    success, error = food_price_management_page.create_new_foodprice(**DataLoader.load_foodprice("duplicate"))
+    success, error = food_price_management_page.create_new_foodprice(
+        **DataLoader.load_foodprice("duplicate")
+    )
 
     assert not success
-    assert error == 'قیمت این غذا برای یک یا چند وعده و سلف های انتخابی شما قبلا تعریف شده است.'
-    
+    assert (
+        error
+        == "قیمت این غذا برای یک یا چند وعده و سلف های انتخابی شما قبلا تعریف شده است."
+    )

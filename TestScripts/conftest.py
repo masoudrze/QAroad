@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -25,13 +26,10 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     report = outcome.get_result()
 
-    
     if report.when == "call" and report.failed:
-
         driver = item.funcargs.get("driver")
 
         if driver:
-
             os.makedirs("Screenshots", exist_ok=True)
 
             test_name = item.name

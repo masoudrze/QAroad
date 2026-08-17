@@ -2,11 +2,11 @@ import json
 from pathlib import Path
 
 from Helpers.config import (
-    ADMIN_USERNAME,
     ADMIN_PASSWORD,
-    USER_USERNAME,
+    ADMIN_USERNAME,
+    FAIL_PASSWORD,
     USER_PASSWORD,
-    FAIL_PASSWORD
+    USER_USERNAME,
 )
 
 
@@ -20,26 +20,24 @@ class DataLoader:
 
         return data[key]
 
-
-
     @staticmethod
     def load_login(key):
         credentials = {
-            "admin_pass":{
-                "username":ADMIN_USERNAME,
-                "password":ADMIN_PASSWORD,
+            "admin_pass": {
+                "username": ADMIN_USERNAME,
+                "password": ADMIN_PASSWORD,
             },
-            "user_pass":{
-                "username":USER_USERNAME,
-                "password":USER_PASSWORD,
+            "user_pass": {
+                "username": USER_USERNAME,
+                "password": USER_PASSWORD,
             },
-            "admin_fail":{
-                "username":ADMIN_USERNAME,
-                "password":FAIL_PASSWORD,
+            "admin_fail": {
+                "username": ADMIN_USERNAME,
+                "password": FAIL_PASSWORD,
             },
-            "user_fail":{
-                "username":USER_USERNAME,
-                "password":FAIL_PASSWORD,
+            "user_fail": {
+                "username": USER_USERNAME,
+                "password": FAIL_PASSWORD,
             },
         }
         return credentials[key]
@@ -51,7 +49,6 @@ class DataLoader:
     @staticmethod
     def load_user(key):
         return DataLoader._load("Users.json", key)
-
 
     @staticmethod
     def load_meal(key):
@@ -76,6 +73,3 @@ class DataLoader:
     @staticmethod
     def load_addmeal(key):
         return DataLoader._load("AddMeal.json", key)
-    
-
- 

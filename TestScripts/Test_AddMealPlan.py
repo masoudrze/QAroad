@@ -1,7 +1,8 @@
 import pytest
+
+from Helpers.data_loader import DataLoader
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.MealPlan_POM import AddMealPlanPage
-from Helpers.data_loader import DataLoader
 
 
 @pytest.mark.smoke
@@ -17,8 +18,3 @@ def test_add_new_meal(driver):
         if error
         else "Create food should be successful but it was not."
     )
-    
-
-
-
-

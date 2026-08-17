@@ -22,9 +22,9 @@ def get_required_env(name: str) -> str:
 BASE_URL = get_required_env("BASE_URL")
 
 ADMIN_USERNAME = get_required_env("ADMIN_USERNAME")
-ADMIN_PASSWORD=get_required_env("ADMIN_PASSWORD")
+ADMIN_PASSWORD = get_required_env("ADMIN_PASSWORD")
 
 USER_USERNAME = get_required_env("USER_USERNAME")
-USER_PASSWORD=get_required_env("USER_PASSWORD")
+USER_PASSWORD = get_required_env("USER_PASSWORD")
 
-FAIL_PASSWORD=get_required_env("FAIL_PASSWORD")
+FAIL_PASSWORD = get_required_env("FAIL_PASSWORD")
