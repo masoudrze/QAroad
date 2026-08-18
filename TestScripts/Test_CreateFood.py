@@ -31,4 +31,4 @@ def test_create_duplicate_food(driver):
     )
 
     assert not success
-    assert error == "غذا تکراری است."
+    assert error == 'نام وارد شده تکراری می باشد'

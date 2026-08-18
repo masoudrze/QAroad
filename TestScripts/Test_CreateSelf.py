@@ -31,4 +31,4 @@ def test_create_duplicate_self(driver):
     success, error = self_management_page.create_self(**DataLoader.load_self("default"))
 
     assert not success
-    assert error == "نام سلف تکراری است"
+    assert error == 'نام وارد شده تکراری می باشد'

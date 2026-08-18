@@ -7,13 +7,14 @@ class UserIndexNav:
     def __init__(self, driver):
         self.driver = driver
         self.user_menu_dropdown_locator = (
-            By.CSS_SELECTOR,
-            "li.user-menu a.dropdown-toggle",
+            By.XPATH,
+            "//li[contains(@class,'user-menu')]//a[contains(@class,'dropdown-toggle')]",
         )
         self.logout_button_locator = (By.XPATH, "(//a[contains(text(),'خروج')])[1]")
 
     def open_user_menu_dropdown(self):
-        self.driver.find_element(*self.user_menu_dropdown_locator).click()
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(EC.element_to_be_clickable(self.user_menu_dropdown_locator)).click()
 
     def user_logout(self):
         wait = WebDriverWait(self.driver, 5)

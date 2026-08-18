@@ -1,37 +1,77 @@
+# =========================
 # Virtual Environment
+# =========================
 .QAvenv/
-venv/
 .venv/
+venv/
 env/
 
-# Python cache
+# =========================
+# Python Cache
+# =========================
 __pycache__/
 *.py[cod]
 *$py.class
 
-# pytest
+# =========================
+# Pytest
+# =========================
 .pytest_cache/
 
+# =========================
+# Test Reports
+# =========================
+reports/
+allure-results/
+allure-report/
+
+# =========================
+# Screenshots
+# =========================
+Screenshots/*
+!Screenshots/.gitkeep
+
+# =========================
 # VS Code
+# =========================
 .vscode/
 
+# =========================
 # Logs
+# =========================
 *.log
 
-# Driver
+# =========================
+# Selenium
+# =========================
 chromedriver.exe
 
+# =========================
+# Node.js
+# =========================
+node_modules/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+githubtoken.txt
+
+# =========================
 # Windows
+# =========================
 Thumbs.db
 Desktop.ini
 
-githubtoken.txt
+# =========================
+# Coverage
+# =========================
+.coverage
+*.coverage
+htmlcov/
 
-# Ignore everything inside screenshots
-Screenshots/*
-
-# But keep this file
-!Screenshots/.gitkeep
-
-# .env
-.env
+# =========================
+# OS / Temporary
+# =========================
+*.tmp
+*.temp

@@ -33,4 +33,4 @@ def test_create_duplicate_meal(driver):
     )
 
     assert not success
-    assert error == "وعده با این نام وجود دارد."
+    assert error == 'نام وارد شده تکراری می باشد'

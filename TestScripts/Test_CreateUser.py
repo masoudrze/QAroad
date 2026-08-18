@@ -30,4 +30,4 @@ def test_create_duplicate_user(driver):
     )
 
     assert not success
-    assert error == "کاربر تکراری است"
+    assert error == 'بارکد کارت تکراری است.'
