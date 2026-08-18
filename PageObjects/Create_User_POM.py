@@ -46,82 +46,100 @@ class UserManagementPage(BasePage):
         return self.is_visible(locator)
 
     def open_new_user_form(self):
-        side_menu = SideMenu(self.driver)
-        side_menu.navigate(
-            side_menu.Definitions_locator,
-            side_menu.Definitions_base_info_locator,
-            side_menu.Definitions_base_info_users_locator,
-        )
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.element_to_be_clickable(self.new_button_locator)).click()
+        with allure.step("Open new user form"):
+            side_menu = SideMenu(self.driver)
+            side_menu.navigate(
+                side_menu.Definitions_locator,
+                side_menu.Definitions_base_info_locator,
+                side_menu.Definitions_base_info_users_locator,
+            )
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.element_to_be_clickable(self.new_button_locator)).click()
 
-        wait.until(EC.visibility_of_element_located(self.submit_button_locator))
+            wait.until(EC.visibility_of_element_located(self.submit_button_locator))
 
     def enter_firstname(self, firstname):
-        self.driver.find_element(*self.firstname_field_locator).send_keys(firstname)
+        with allure.step("Enter firstname"):
+            self.driver.find_element(*self.firstname_field_locator).send_keys(firstname)
 
     def enter_lastname(self, lastname):
-        self.driver.find_element(*self.lastname_field_locator).send_keys(lastname)
+        with allure.step("Enter lastname"):
+            self.driver.find_element(*self.lastname_field_locator).send_keys(lastname)
 
     def enter_meli(self, meli):
-        self.driver.find_element(*self.meli_field_locator).send_keys(meli)
+        with allure.step("Enter code melli"):
+            self.driver.find_element(*self.meli_field_locator).send_keys(meli)
 
     def enter_sex(self, sex):
-        self.driver.find_element(*self.sex_field_locator)
-        select = Select(self.driver.find_element(*self.sex_field_locator))
-        select.select_by_visible_text(sex)
+        with allure.step("Enter sex"):
+            self.driver.find_element(*self.sex_field_locator)
+            select = Select(self.driver.find_element(*self.sex_field_locator))
+            select.select_by_visible_text(sex)
 
     def enter_barcode(self, barcode):
-        self.driver.find_element(*self.barcode_field_locator).send_keys(barcode)
+        with allure.step("Enter barcode"):
+            self.driver.find_element(*self.barcode_field_locator).send_keys(barcode)
 
     def enter_cardnumber(self, cardnumber):
-        self.driver.find_element(*self.cardnumber_field_locator).send_keys(cardnumber)
+        with allure.step("Enter cardnumber"):
+            self.driver.find_element(*self.cardnumber_field_locator).send_keys(cardnumber)
 
     def enter_expiredate(self, expiredate):
-        self.driver.find_element(*self.expiredate_field_locator).send_keys(expiredate)
+        with allure.step("Enter expiredate"):
+            self.driver.find_element(*self.expiredate_field_locator).send_keys(expiredate)
 
     def enter_username(self, username):
-        self.driver.find_element(*self.username_field_locator).send_keys(username)
+        with allure.step("Enter username"):
+            self.driver.find_element(*self.username_field_locator).send_keys(username)
 
     def enter_password(self, password):
-        self.driver.find_element(*self.password_field_locator).send_keys(password)
+        with allure.step("Enter password"):
+            self.driver.find_element(*self.password_field_locator).send_keys(password)
 
     def enter_repassword(self, repassword):
-        self.driver.find_element(*self.repassword_field_locator).send_keys(repassword)
+        with allure.step("Enter repassword"):
+            self.driver.find_element(*self.repassword_field_locator).send_keys(repassword)
 
     def enter_role(self, role):
-        select_element = self.driver.find_element(*self.role_field_locator)
-        select = Select(select_element)
-        select.select_by_visible_text(role)
+        with allure.step("Enter role"):
+            select_element = self.driver.find_element(*self.role_field_locator)
+            select = Select(select_element)
+            select.select_by_visible_text(role)
 
     def enter_passwordfaramooshi(self, passwordfaramooshi):
-        self.driver.find_element(*self.passwordfaramooshi_field_locator).send_keys(
-            passwordfaramooshi
-        )
+        with allure.step("Enter passwordfaramooshi"):
+            self.driver.find_element(*self.passwordfaramooshi_field_locator).send_keys(
+                passwordfaramooshi
+            )
 
     def enter_personelli(self, personelli):
-        self.driver.find_element(*self.personelli_field_locator).send_keys(personelli)
+        with allure.step("Enter personelli"):
+            self.driver.find_element(*self.personelli_field_locator).send_keys(personelli)
 
     def enter_group(self, group):
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.element_to_be_clickable(self.group_field_locator)).click()
+        with allure.step("Enter group"):
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.element_to_be_clickable(self.group_field_locator)).click()
 
-        wait.until(
-            EC.element_to_be_clickable((By.XPATH, f"//li[normalize-space()='{group}']"))
-        ).click()
+            wait.until(
+                EC.element_to_be_clickable((By.XPATH, f"//li[normalize-space()='{group}']"))
+            ).click()
 
     def enter_active_fromdate(self, active_fromdate):
-        self.driver.find_element(*self.active_fromdate_field_locator).send_keys(
-            active_fromdate
-        )
+        with allure.step("Enter active_fromdate"):
+            self.driver.find_element(*self.active_fromdate_field_locator).send_keys(
+                active_fromdate
+            )
 
     def enter_active_todate(self, active_todate):
-        self.driver.find_element(*self.active_todate_field_locator).send_keys(
-            active_todate
-        )
+        with allure.step("Enter active_todate"):
+            self.driver.find_element(*self.active_todate_field_locator).send_keys(
+                active_todate
+            )
 
     def submit_form(self):
-        self.driver.find_element(*self.submit_button_locator).click()
+        with allure.step("submit form"):
+            self.driver.find_element(*self.submit_button_locator).click()
 
     def create_user(
         self,

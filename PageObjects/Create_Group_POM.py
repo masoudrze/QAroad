@@ -28,31 +28,36 @@ class GroupManagementPage(BasePage):
         return self.is_visible(locator)
 
     def open_new_group_form(self):
-        side_menu = SideMenu(self.driver)
-        side_menu.navigate(
-            side_menu.Definitions_locator,
-            side_menu.Definitions_base_info_locator,
-            side_menu.Definitions_base_info_group_locator,
-        )
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.element_to_be_clickable(self.new_button_locator)).click()
-        wait.until(EC.element_to_be_clickable(self.submit_button_locator))
+        with allure.step("open new group form"):
+            side_menu = SideMenu(self.driver)
+            side_menu.navigate(
+                side_menu.Definitions_locator,
+                side_menu.Definitions_base_info_locator,
+                side_menu.Definitions_base_info_group_locator,
+            )
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.element_to_be_clickable(self.new_button_locator)).click()
+            wait.until(EC.element_to_be_clickable(self.submit_button_locator))
 
     def enter_name(self, name):
-        self.driver.find_element(*self.name_field_locator).send_keys(name)
+        with allure.step("Enter group name"):
+            self.driver.find_element(*self.name_field_locator).send_keys(name)
 
     def enter_MinIncreaseCredit(self, MinIncreaseCredit):
-        self.driver.find_element(*self.MinIncreaseCredit_field_locator).send_keys(
-            MinIncreaseCredit
-        )
+        with allure.step("Enter group min increase credit"):
+            self.driver.find_element(*self.MinIncreaseCredit_field_locator).send_keys(
+                MinIncreaseCredit
+            )
 
     def enter_MaxIncreaseCredit(self, MaxIncreaseCredit):
-        self.driver.find_element(*self.MaxIncreaseCredit_field_locator).send_keys(
-            MaxIncreaseCredit
-        )
+        with allure.step("Enter group max increase credit"):
+            self.driver.find_element(*self.MaxIncreaseCredit_field_locator).send_keys(
+                MaxIncreaseCredit
+            )
 
     def submit_form(self):
-        self.driver.find_element(*self.submit_button_locator).click()
+        with allure.step("submit form"):
+            self.driver.find_element(*self.submit_button_locator).click()
 
     def create_group(self, name, MinIncreaseCredit, MaxIncreaseCredit):
         self.open_new_group_form()
