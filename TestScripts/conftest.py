@@ -2,6 +2,8 @@ import os
 from datetime import datetime
 
 import pytest
+import allure
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service
@@ -77,3 +79,5 @@ def pytest_runtest_makereport(item, call):
 
             browser_driver.save_screenshot(filepath)
             print(f"\nScreenshot saved: {filepath}")
+
+

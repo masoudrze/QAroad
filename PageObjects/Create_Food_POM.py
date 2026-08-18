@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
@@ -27,28 +28,32 @@ class FoodManagementPage(BasePage):
         return self.is_visible(locator)
 
     def open_new_food_form(self):
-        side_menu = SideMenu(self.driver)
-        side_menu.navigate(
-            side_menu.Definitions_locator,
-            side_menu.Definitions_feeding_locator,
-            side_menu.Definitions_feeding_food_locator,
-        )
+        with allure.step("Open new food form"):
+            side_menu = SideMenu(self.driver)
+            side_menu.navigate(
+                side_menu.Definitions_locator,
+                side_menu.Definitions_feeding_locator,
+                side_menu.Definitions_feeding_food_locator,
+            )
 
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.element_to_be_clickable(self.new_button_locator)).click()
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.element_to_be_clickable(self.new_button_locator)).click()
 
-        wait.until(EC.visibility_of_element_located(self.submit_button_locator))
+            wait.until(EC.visibility_of_element_located(self.submit_button_locator))
 
     def enter_name(self, name):
-        self.driver.find_element(*self.name_field_locator).send_keys(name)
+        with allure.step("Enter foodname"):
+            self.driver.find_element(*self.name_field_locator).send_keys(name)
 
     def enter_foodtype(self, foodtype):
-        self.driver.find_element(*self.foodtype_field_locator)
-        select = Select(self.driver.find_element(*self.foodtype_field_locator))
-        select.select_by_visible_text(foodtype)
+        with allure.step("Enter foodtype"):
+            self.driver.find_element(*self.foodtype_field_locator)
+            select = Select(self.driver.find_element(*self.foodtype_field_locator))
+            select.select_by_visible_text(foodtype)
 
     def submit_form(self):
-        self.driver.find_element(*self.submit_button_locator).click()
+        with allure.step("submit form"):
+            self.driver.find_element(*self.submit_button_locator).click()
 
     def create_food(self, name, foodtype):
         self.open_new_food_form()

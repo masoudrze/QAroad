@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -64,68 +65,73 @@ class AddMealPlanPage(BasePage):
         return self.is_visible(locator)
 
     def open_new_meal_plan_form(self):
-        side_menu = SideMenu(self.driver)
-        side_menu.navigate(
-            side_menu.GroupsSettings_locator,
-            side_menu.GroupsSettings_locator,
-            side_menu.GroupsSettings_mealplan_locator,
-        )
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.element_to_be_clickable(self.select_meal_locator))
-        wait.until(EC.visibility_of_element_located(self.submit_button_locator))
+        with allure.step("Open new meal form"):
+            side_menu = SideMenu(self.driver)
+            side_menu.navigate(
+                side_menu.GroupsSettings_locator,
+                side_menu.GroupsSettings_locator,
+                side_menu.GroupsSettings_mealplan_locator,
+            )
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.element_to_be_clickable(self.select_meal_locator))
+            wait.until(EC.visibility_of_element_located(self.submit_button_locator))
 
     def select_meal(self, meal):
-        self.driver.find_element(*self.select_meal_locator).click()
-        select = (
-            By.XPATH,
-            f"//ul[@role='select']//a[span[normalize-space()='{meal}']]",
-        )
+        with allure.step("select meal"):
+            self.driver.find_element(*self.select_meal_locator).click()
+            select = (
+                By.XPATH,
+                f"//ul[@role='select']//a[span[normalize-space()='{meal}']]",
+            )
 
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.element_to_be_clickable(select)).click()
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.element_to_be_clickable(select)).click()
 
     def enter_foodname(self, foodname):
+        with allure.step("select foodname"):
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.element_to_be_clickable(self.select_meal_list_locator)).click()
 
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.element_to_be_clickable(self.select_meal_list_locator)).click()
-
-        wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, f"//li[normalize-space()='{foodname}']")
-            )
-        ).click()
+            wait.until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, f"//li[normalize-space()='{foodname}']")
+                )
+            ).click()
 
     def add_max_count(self, max):
-        self.driver.find_element(*self.maxcount_meal_locator).send_keys(max)
+        with allure.step("select max count"):
+            self.driver.find_element(*self.maxcount_meal_locator).send_keys(max)
 
     def select_week_day(self, weekdays):
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.presence_of_element_located((By.ID, "saturday"))).click()
+        with allure.step("select weekday"):
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.presence_of_element_located((By.ID, "saturday"))).click()
 
-        weekday = [day.strip() for day in weekdays.split(",") if day.strip()]
-        day_ids = {
-            "شنبه": "saturday",
-            "یکشنبه": "sunday",
-            "دوشنبه": "monday",
-            "سه شنبه": "thusday",
-            "چهارشنبه": "wensday",
-            "پنجشنبه": "thrusday",
-            "جمعه": "friday",
-        }
-        for day in weekday:
-            day_id = day_ids.get(day)
-            wait.until(EC.presence_of_element_located((By.ID, day_id))).click()
+            weekday = [day.strip() for day in weekdays.split(",") if day.strip()]
+            day_ids = {
+                "شنبه": "saturday",
+                "یکشنبه": "sunday",
+                "دوشنبه": "monday",
+                "سه شنبه": "thusday",
+                "چهارشنبه": "wensday",
+                "پنجشنبه": "thrusday",
+                "جمعه": "friday",
+            }
+            for day in weekday:
+                day_id = day_ids.get(day)
+                wait.until(EC.presence_of_element_located((By.ID, day_id))).click()
 
     def select_selfs(self, selfnames):
-        wait = WebDriverWait(self.driver, 5)
+        with allure.step("select selfname"):
+            wait = WebDriverWait(self.driver, 5)
 
-        selfname = [name.strip() for name in selfnames.split(",") if name.strip()]
-        for name in selfname:
-            select_self_locator = (
-                By.XPATH,
-                f"//div[@id='normalcheckboxlistself']//li[.//span[@data-role='display' and normalize-space()='{name}']]//label",
-            )
-            wait.until(EC.element_to_be_clickable(select_self_locator)).click()
+            selfname = [name.strip() for name in selfnames.split(",") if name.strip()]
+            for name in selfname:
+                select_self_locator = (
+                    By.XPATH,
+                    f"//div[@id='normalcheckboxlistself']//li[.//span[@data-role='display' and normalize-space()='{name}']]//label",
+                )
+                wait.until(EC.element_to_be_clickable(select_self_locator)).click()
 
     def add_temp_meal(self, meal, foodname, max, weekdays, selfnames):
         self.open_new_meal_plan_form()

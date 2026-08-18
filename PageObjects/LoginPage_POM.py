@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -11,10 +12,12 @@ class LoginPage:
         self.submit_button_locator = (By.XPATH, '//button[text()="ورود"]')
 
     def enter_username(self, username):
-        self.driver.find_element(*self.username_field_locator).send_keys(username)
+        with allure.step("Enter username"):
+            self.driver.find_element(*self.username_field_locator).send_keys(username)
 
     def enter_password(self, password):
-        self.driver.find_element(*self.password_field_locator).send_keys(password)
+        with allure.step("Enter password"):
+            self.driver.find_element(*self.password_field_locator).send_keys(password)
 
     def submit_form(self):
         self.driver.find_element(*self.submit_button_locator).click()
