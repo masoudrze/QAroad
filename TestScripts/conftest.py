@@ -57,6 +57,7 @@ def driver():
     try:
         browser_driver.get(BASE_URL)
         yield browser_driver
+
     finally:
         browser_driver.quit()
 
@@ -70,6 +71,10 @@ def pytest_runtest_makereport(item, call):
         browser_driver = item.funcargs.get("driver")
 
         if browser_driver:
+            # ---------------------------------------------------------
+            # 1. Save screenshot locally
+            # ---------------------------------------------------------
+
             os.makedirs("Screenshots", exist_ok=True)
 
             test_name = item.name
@@ -78,6 +83,36 @@ def pytest_runtest_makereport(item, call):
             filepath = os.path.join("Screenshots", filename)
 
             browser_driver.save_screenshot(filepath)
+
             print(f"\nScreenshot saved: {filepath}")
 
+            # ---------------------------------------------------------
+            # 2. Attach screenshot to Allure
+            # ---------------------------------------------------------
+
+            allure.attach(
+                browser_driver.get_screenshot_as_png(),
+                name="Failure Screenshot",
+                attachment_type=allure.attachment_type.PNG,
+            )
+
+            # ---------------------------------------------------------
+            # 3. Attach current page source to Allure
+            # ---------------------------------------------------------
+
+            allure.attach(
+                browser_driver.page_source,
+                name="Page Source",
+                attachment_type=allure.attachment_type.HTML,
+            )
+
+            # ---------------------------------------------------------
+            # 4. Attach current URL to Allure
+            # ---------------------------------------------------------
+
+            allure.attach(
+                browser_driver.current_url,
+                name="Current URL",
+                attachment_type=allure.attachment_type.TEXT,
+            )
 
