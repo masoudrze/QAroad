@@ -4,7 +4,10 @@ from Helpers.data_loader import DataLoader
 from PageObjects.Create_Self_POM import SelfManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
-
+@pytest.mark.dependency(
+    name="create_self",
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create Self")
@@ -26,6 +29,9 @@ def test_create_new_self(driver):
     )
 
 
+@pytest.mark.dependency(
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create Self")

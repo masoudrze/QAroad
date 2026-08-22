@@ -18,12 +18,15 @@ def test_invalid_admin_login(driver):
     assert expected_text in login_page.login_failed_message()
 
 
-@pytest.mark.critical
+@pytest.mark.dependency(
+    depends=["create_user"]
+)
+@pytest.mark.blocker
 @allure.epic("Authentication")
 @allure.feature("User Login")
 @allure.story("Simple User Entered Wrong Credential")
 @allure.title("Invalid User Login")
-@allure.severity(allure.severity_level.CRITICAL)
+@allure.severity(allure.severity_level.BLOCKER)
 def test_invalid_user_login(driver):
     login_page = LoginPage(driver)
     login_page.login(**DataLoader.load_login("user_fail"))
@@ -31,6 +34,7 @@ def test_invalid_user_login(driver):
     assert expected_text in login_page.login_failed_message()
 
 
+@pytest.mark.dependency(name="admin_login")
 @pytest.mark.blocker
 @allure.epic("Authentication")
 @allure.feature("User Login")
@@ -44,13 +48,16 @@ def test_valid_admin_login(driver):
         "login should be successful but it is not"
     )
 
-
-@pytest.mark.critical
+@pytest.mark.dependency(
+    name="user_login",
+    depends=["create_user"]
+)
+@pytest.mark.blocker
 @allure.epic("Authentication")
 @allure.feature("User Login")
 @allure.story("Simple User Correct Credential")
 @allure.title("Valid User Login")
-@allure.severity(allure.severity_level.CRITICAL)
+@allure.severity(allure.severity_level.BLOCKER)
 def test_valid_user_login(driver):
     login_page = LoginPage(driver)
     login_page.login(**DataLoader.load_login("user_pass"))
@@ -58,7 +65,9 @@ def test_valid_user_login(driver):
         "login should be successful but it is not"
     )
 
-
+@pytest.mark.dependency(
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Authentication")
 @allure.feature("User Login")
@@ -73,12 +82,15 @@ def test_valid_admin_login_logout(driver):
     assert logout.is_logged_out(), "logout should be successful but it is not"
 
 
-@pytest.mark.critical
+@pytest.mark.dependency(
+    depends=["user_login"]
+)
+@pytest.mark.blocker
 @allure.epic("Authentication")
 @allure.feature("User Login")
 @allure.story("Simple User Login And Logout")
 @allure.title("Valid Simple Login And Logout")
-@allure.severity(allure.severity_level.CRITICAL)
+@allure.severity(allure.severity_level.BLOCKER)
 def test_valid_user_login_logout(driver):
     login_page = LoginPage(driver)
     login_page.login(**DataLoader.load_login("user_pass"))

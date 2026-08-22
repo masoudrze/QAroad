@@ -5,12 +5,16 @@ from PageObjects.Create_Food_POM import FoodManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
 
-@pytest.mark.critical
+@pytest.mark.dependency(
+    name="create_food",
+    depends=["create_foodtype"]
+)
+@pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create Food")
 @allure.story("Admin User Creating A New Food")
 @allure.title("Create New Food")
-@allure.severity(allure.severity_level.CRITICAL)
+@allure.severity(allure.severity_level.BLOCKER)
 def test_create_new_food(driver):
     login_page = LoginPage(driver)
     food_management_page = FoodManagementPage(driver)
@@ -25,12 +29,15 @@ def test_create_new_food(driver):
     )
 
 
-@pytest.mark.critical
+@pytest.mark.dependency(
+    depends=["create_foodtype"]
+)
+@pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create Food")
 @allure.story("Admin User Creating A Duplicate Food")
 @allure.title("Create Duplicate Food")
-@allure.severity(allure.severity_level.CRITICAL)
+@allure.severity(allure.severity_level.BLOCKER)
 def test_create_duplicate_food(driver):
     login_page = LoginPage(driver)
     food_management_page = FoodManagementPage(driver)

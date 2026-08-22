@@ -5,6 +5,10 @@ from PageObjects.Create_User_POM import UserManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
 
+@pytest.mark.dependency(
+    name="create_user",
+    depends=["create_group"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create User")
@@ -24,7 +28,9 @@ def test_create_new_user(driver):
         else "Create food should be successful but it was not."
     )
 
-
+@pytest.mark.dependency(
+    depends=["create_group"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create User")

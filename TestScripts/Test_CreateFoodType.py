@@ -5,6 +5,10 @@ from PageObjects.Create_FoodType_POM import FoodTypeManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
 
+@pytest.mark.dependency(
+    name="create_foodtype",
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create FoodType")
@@ -28,6 +32,9 @@ def test_create_new_foodtype(driver):
     )
 
 
+@pytest.mark.dependency(
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create FoodType")

@@ -4,7 +4,10 @@ from Helpers.data_loader import DataLoader
 from PageObjects.Create_Group_POM import GroupManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
-
+@pytest.mark.dependency(
+    name="create_group",
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create Group")
@@ -27,6 +30,9 @@ def test_create_new_group(driver):
     )
 
 
+@pytest.mark.dependency(
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create Group")

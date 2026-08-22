@@ -4,7 +4,10 @@ from Helpers.data_loader import DataLoader
 from PageObjects.Create_Meal_POM import MealManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
-
+@pytest.mark.dependency(
+    name="create_meal",
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create Meal")
@@ -26,6 +29,9 @@ def test_create_new_meal(driver):
     )
 
 
+@pytest.mark.dependency(
+    depends=["admin_login"]
+)
 @pytest.mark.blocker
 @allure.epic("Definitions")
 @allure.feature("Create Meal")
