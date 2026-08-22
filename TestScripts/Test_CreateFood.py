@@ -10,7 +10,7 @@ from PageObjects.LoginPage_POM import LoginPage
 @allure.feature("Create Food")
 @allure.story("Admin User Creating A New Food")
 @allure.title("Create New Food")
-@allure.severity(allure.severity_level.Critical)
+@allure.severity(allure.severity_level.CRITICAL)
 def test_create_new_food(driver):
     login_page = LoginPage(driver)
     food_management_page = FoodManagementPage(driver)
@@ -30,7 +30,7 @@ def test_create_new_food(driver):
 @allure.feature("Create Food")
 @allure.story("Admin User Creating A Duplicate Food")
 @allure.title("Create Duplicate Food")
-@allure.severity(allure.severity_level.Critical)
+@allure.severity(allure.severity_level.CRITICAL)
 def test_create_duplicate_food(driver):
     login_page = LoginPage(driver)
     food_management_page = FoodManagementPage(driver)

@@ -11,7 +11,7 @@ from PageObjects.Create_User_POM import UserManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
 
-@pytest.mark.smoke
+
 def test_primary_definitions(driver):
     login_page = LoginPage(driver)
     group_management_page = GroupManagementPage(driver)

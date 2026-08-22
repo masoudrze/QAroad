@@ -10,7 +10,7 @@ from PageObjects.MealPlan_POM import AddMealPlanPage
 @allure.feature("Add Meal Plan")
 @allure.story("Admin User Add A New Meal Plan")
 @allure.title("Create New Meal Plan")
-@allure.severity(allure.severity_level.Normal)
+@allure.severity(allure.severity_level.NORMAL)
 def test_add_new_meal(driver):
     login_page = LoginPage(driver)
     add_meal_plan_page = AddMealPlanPage(driver)
