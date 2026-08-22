@@ -1,11 +1,16 @@
 import pytest
-
+import allure
 from Helpers.data_loader import DataLoader
 from PageObjects.Create_FoodPrice_POM import FoodPriceManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
 
-@pytest.mark.smoke
+@pytest.mark.normal
+@allure.epic("Definitions")
+@allure.feature("Add Food Price")
+@allure.story("Admin User Add A New Food Price")
+@allure.title("Add New Food Price")
+@allure.severity(allure.severity_level.Normal)
 def test_add_new_foodprice(driver):
     login_page = LoginPage(driver)
     food_price_management_page = FoodPriceManagementPage(driver)
@@ -23,7 +28,12 @@ def test_add_new_foodprice(driver):
     )
 
 
-@pytest.mark.negative
+@pytest.mark.normal
+@allure.epic("Definitions")
+@allure.feature("Add Food Price")
+@allure.story("Admin User Add A Duplicate Food Price")
+@allure.title("Add Duplicate Food Price")
+@allure.severity(allure.severity_level.Normal)
 def test_add_duplicate_foodprice(driver):
     login_page = LoginPage(driver)
     food_price_management_page = FoodPriceManagementPage(driver)

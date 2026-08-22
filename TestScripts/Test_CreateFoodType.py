@@ -1,11 +1,16 @@
 import pytest
-
+import allure
 from Helpers.data_loader import DataLoader
 from PageObjects.Create_FoodType_POM import FoodTypeManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
 
-@pytest.mark.smoke
+@pytest.mark.blocker
+@allure.epic("Definitions")
+@allure.feature("Create FoodType")
+@allure.story("Admin User Creating A New FoodType")
+@allure.title("Create New FoodType")
+@allure.severity(allure.severity_level.BLOCKER)
 def test_create_new_foodtype(driver):
     login_page = LoginPage(driver)
     foodtype_management_page = FoodTypeManagementPage(driver)
@@ -23,7 +28,12 @@ def test_create_new_foodtype(driver):
     )
 
 
-@pytest.mark.negative
+@pytest.mark.blocker
+@allure.epic("Definitions")
+@allure.feature("Create FoodType")
+@allure.story("Admin User Creating A Duplicate FoodType")
+@allure.title("Create Duplicate FoodType")
+@allure.severity(allure.severity_level.BLOCKER)
 def test_create_duplicate_foodtype(driver):
     login_page = LoginPage(driver)
     foodtype_management_page = FoodTypeManagementPage(driver)

@@ -1,11 +1,16 @@
 import pytest
-
+import allure
 from Helpers.data_loader import DataLoader
 from PageObjects.Create_Self_POM import SelfManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
 
-@pytest.mark.smoke
+@pytest.mark.blocker
+@allure.epic("Definitions")
+@allure.feature("Create Self")
+@allure.story("Admin User Creating A New Self")
+@allure.title("Create New Self")
+@allure.severity(allure.severity_level.BLOCKER)
 def test_create_new_self(driver):
     login_page = LoginPage(driver)
     self_management_page = SelfManagementPage(driver)
@@ -21,7 +26,12 @@ def test_create_new_self(driver):
     )
 
 
-@pytest.mark.negative
+@pytest.mark.blocker
+@allure.epic("Definitions")
+@allure.feature("Create Self")
+@allure.story("Admin User Creating A Duplicate Self")
+@allure.title("Create Duplicate Self")
+@allure.severity(allure.severity_level.BLOCKER)
 def test_create_duplicate_self(driver):
     login_page = LoginPage(driver)
     self_management_page = SelfManagementPage(driver)

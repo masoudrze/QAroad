@@ -1,11 +1,16 @@
 import pytest
-
+import allure
 from Helpers.data_loader import DataLoader
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.MealPlan_POM import AddMealPlanPage
 
 
-@pytest.mark.smoke
+@pytest.mark.normal
+@allure.epic("Group Settings")
+@allure.feature("Add Temp Meal Plan")
+@allure.story("Admin User Add A New Temp Meal Plan")
+@allure.title("Add New Temp Meal Plan")
+@allure.severity(allure.severity_level.Normal)
 def test_add_new_temp_meal(driver):
     login_page = LoginPage(driver)
     add_meal_plan_page = AddMealPlanPage(driver)
@@ -22,7 +27,12 @@ def test_add_new_temp_meal(driver):
     )
 
 
-@pytest.mark.negative
+@pytest.mark.normal
+@allure.epic("Group Settings")
+@allure.feature("Add Temp Meal Plan")
+@allure.story("Admin User Add A Duplicate Temp Meal Plan")
+@allure.title("Add Duplicate Temp Meal Plan")
+@allure.severity(allure.severity_level.Normal)
 def test_add_duplicate_temp_meal(driver):
     login_page = LoginPage(driver)
     add_meal_plan_page = AddMealPlanPage(driver)

@@ -1,11 +1,17 @@
 import pytest
-
+import allure
 from Helpers.data_loader import DataLoader
 from PageObjects.Create_Group_POM import GroupManagementPage
 from PageObjects.LoginPage_POM import LoginPage
 
 
-@pytest.mark.smoke
+@pytest.mark.blocker
+@allure.epic("Definitions")
+@allure.feature("Create Group")
+@allure.story("Admin User Creating A New Group")
+@allure.title("Create New Group")
+@allure.severity(allure.severity_level.BLOCKER)
+
 def test_create_new_group(driver):
     login_page = LoginPage(driver)
     group_management_page = GroupManagementPage(driver)
@@ -21,7 +27,13 @@ def test_create_new_group(driver):
     )
 
 
-@pytest.mark.negative
+@pytest.mark.blocker
+@allure.epic("Definitions")
+@allure.feature("Create Group")
+@allure.story("Admin User Creating A Duplicate Group")
+@allure.title("Create Duplicate Group")
+@allure.severity(allure.severity_level.BLOCKER)
+
 def test_create_duplicate_group(driver):
     login_page = LoginPage(driver)
     group_management_page = GroupManagementPage(driver)

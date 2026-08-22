@@ -1,11 +1,16 @@
 import pytest
-
+import allure
 from Helpers.data_loader import DataLoader
 from PageObjects.LoginPage_POM import LoginPage
 from PageObjects.MealPlan_POM import AddMealPlanPage
 
 
-@pytest.mark.smoke
+@pytest.mark.normal
+@allure.epic("Group Settings")
+@allure.feature("Add Meal Plan")
+@allure.story("Admin User Add A New Meal Plan")
+@allure.title("Create New Meal Plan")
+@allure.severity(allure.severity_level.Normal)
 def test_add_new_meal(driver):
     login_page = LoginPage(driver)
     add_meal_plan_page = AddMealPlanPage(driver)
